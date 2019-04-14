@@ -1,0 +1,38 @@
+.nav-link {
+    padding: 1.1rem 1rem;
+}
+.navbar-brand {
+
+}
+.navbar-expand-sm {
+    justify-content: space-between;
+}
+.navbar {
+    max-width: 85%;
+    margin:auto;
+}
+.topPanel {
+    position:relative;
+}
+.navContainer {
+    background-color: rgba(255, 255, 255, 0.3);
+    position:relative;
+    z-index:2;
+}
+.navbar-brand {
+    color:white;
+    font-size: 21px;
+    font-family: "Times New Roman", Serif;
+}
+.picRollPanel {
+    width: 100%;
+    height: 700px;
+    border:1px solid cyan;
+    background-image: url('../img/white.jpg');
+    background-color:dimgrey;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position:absolute;
+    top:0;
+    z-index: 1;
+}
