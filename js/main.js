@@ -2,7 +2,22 @@
 $(document).ready(function() {
 
   'use strict';
+  $( window ).resize(function() {
+      var set = $(".header-content").prevAll("h1");
+      var length = set.length;
+      var topBase = $("#typeArea").position().top - 20;
+      for (var i = 0;i < length;i++) {
+        var curHeight = set.eq(i).outerHeight();
+        topBase -= (curHeight + 13);
+        set.eq(i).css("top",topBase);
+        var arrowRight = set.eq(i).next();
+        var arrowHeight = arrowRight.outerHeight();
+        var left = set.eq(i).position().left + set.eq(i).outerWidth();
+        arrowRight.css("top", topBase + (curHeight - arrowHeight)/2.0);
+        arrowRight.css("left", left + arrowRight.width());
+      }
 
+  });
   // ========================================================================= //
   //  //SMOOTH SCROLL
   // ========================================================================= //
@@ -85,7 +100,7 @@ $(document).ready(function() {
       startDelay: 200,
       loop: false,
       onStringTyped: function() {
-        var currentTop = $(".typed-cursor").position().top;
+        var currentTop = $("#typeArea").position().top-20;
           headerContent.before(
             "<h1 class = 'message' style=\"color:#eeeeee;position:absolute;top:"+currentTop
             +"px;font-family: 'Roboto', sans-serif;padding:6px;"
@@ -128,20 +143,22 @@ $(document).ready(function() {
           var currentHeight = $("#typeArea").outerHeight();
           $(".typed-cursor").html("");
           $("#typeArea").css("height", currentHeight);
-          $(".header-content").prevAll().each(function(){
-            var curTop = $(this).position().top;
-            var curVh = $(window).height();
-            $(this).animate({
-              top: curTop - curVh * 0.10,
-            });
-          });
+
+          // $(".header-content").prevAll().each(function(){
+          //   var curTop = $(this).position().top;
+          //   var curVh = $(window).height();
+          //   $(this).animate({
+          //     top: curTop - 20,
+          //   });
+          // });
+
           var aboutMe = $(".moreAboutMe");
           aboutMe
               .addClass('block')
               .outerWidth(); // Reflow
           aboutMe
               .addClass('fade-in')
-              .one(transitionEnd, function() {
+              .one(null, function() {
               });
         }
         index++;
@@ -150,8 +167,6 @@ $(document).ready(function() {
       wantBackSpace:false
     });
   });
-
-
   // ========================================================================= //
   //  Owl Carousel Services
   // ========================================================================= //
