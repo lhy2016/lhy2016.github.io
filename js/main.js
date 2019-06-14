@@ -5,7 +5,7 @@ $(document).ready(function() {
   $( window ).resize(function() {
       var set = $(".header-content").prevAll("h1");
       var length = set.length;
-      var topBase = $("#typeArea").position().top - 20;
+      var topBase = $("#typeArea").position().top - 15;
       for (var i = 0;i < length;i++) {
         var curHeight = set.eq(i).outerHeight();
         topBase -= (curHeight + 13);
@@ -100,7 +100,7 @@ $(document).ready(function() {
       startDelay: 200,
       loop: false,
       onStringTyped: function() {
-        var currentTop = $("#typeArea").position().top-20;
+        var currentTop = $("#typeArea").position().top-15;
           headerContent.before(
             "<h1 class = 'message' style=\"color:#eeeeee;position:absolute;top:"+currentTop
             +"px;font-family: 'Roboto', sans-serif;padding:6px;"
