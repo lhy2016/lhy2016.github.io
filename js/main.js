@@ -18,6 +18,18 @@ $(document).ready(function() {
       }
 
   });
+  setTimeout(function(){$("#header").bgswitcher({
+    images: ["./images/home-bg.jpg", "./images/blog-post-2.jpg", "./images/blog-post-3.jpg"],
+    loop: true,
+    interval: 4000
+  }, 5000);
+  });
+
+
+  $("#arrow-forward").click(function() {
+
+    });
+
   // ========================================================================= //
   //  //SMOOTH SCROLL
   // ========================================================================= //
@@ -151,8 +163,10 @@ $(document).ready(function() {
           //     top: curTop - 20,
           //   });
           // });
-
+          var arrowBack = $("#arrow-back");
+          var arrowForward = $("#arrow-forward");
           var aboutMe = $(".moreAboutMe");
+          var social = $(".list-social");
           aboutMe
               .addClass('block')
               .outerWidth(); // Reflow
@@ -160,6 +174,18 @@ $(document).ready(function() {
               .addClass('fade-in')
               .one(null, function() {
               });
+          arrowBack.addClass('block').outerWidth();
+          arrowBack.addClass('fade-in').one(null, function() {});
+          arrowBack.css("display","inline");
+
+          arrowForward.addClass('block').outerWidth();
+          arrowForward.addClass('fade-in').one(null, function() {});
+          arrowForward.css("display","inline");
+
+          social.addClass('block').outerWidth();
+          social.addClass('fade-in').one(null, function() {});
+          social.css("opacity","1");
+
         }
         index++;
         },
