@@ -233,14 +233,18 @@ nav ul li a {
 
 #header {
 
-  background-image: linear-gradient(
+  /*background-image:  */
+  background:
+  url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2NkYGBgyMzM/D99+nRGEA0mYBwQzUhQBQCTUxx5+Y70qgAAAABJRU5ErkJggg==),
+ /* linear-gradient(
           rgba(95, 95, 95, 0.45),
           rgba(16, 75, 148, 0.45)
-  ), url("../images/home-bg.jpg");
-  background-repeat: no-repeat;
+  ),*/
+  url("../images/home-bg.jpg");
+  background-repeat: repeat, repeat, no-repeat;
   background-attachment: scroll;
   background-position: center center;
-  background-size: cover;
+  background-size: auto, cover, cover;
 
 /*scroll center center / cover;*/
   height: 100vh;
