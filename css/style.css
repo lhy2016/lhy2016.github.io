@@ -241,10 +241,10 @@ nav ul li a {
           rgba(16, 75, 148, 0.45)
   ),*/
   url("../images/home-bg.jpg");
-  background-repeat: repeat, repeat, no-repeat;
+  background-repeat: repeat, repeat;
   background-attachment: scroll;
   background-position: center center;
-  background-size: auto, cover, cover;
+  background-size: auto, cover;
 
 /*scroll center center / cover;*/
   height: 100vh;

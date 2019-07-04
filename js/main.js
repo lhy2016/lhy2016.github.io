@@ -19,9 +19,9 @@ $(document).ready(function() {
 
   });
   setTimeout(function(){$("#header").bgswitcher({
-    images: ["./images/home-bg.jpg", "./images/blog-post-2.jpg", "./images/blog-post-3.jpg"],
+    images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/aviso.jpg"],
     loop: true,
-    interval: 4000
+    interval: 6000
   }, 6000);
   });
 
