@@ -18,7 +18,9 @@ $(document).ready(function() {
       }
 
   });
-  setTimeout(function(){$("#header").bgswitcher({
+  var bgswitcher;
+  setTimeout(function(){
+    bgswitcher = $("#header").bgswitcher({
     images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/aviso.jpg"],
     loop: true,
     interval: 6000
@@ -27,7 +29,10 @@ $(document).ready(function() {
 
 
   $("#arrow-forward").click(function() {
-
+      bgswitcher.bgswitcher("next");
+    });
+  $("#arrow-back").click(function() {
+      bgswitcher.bgswitcher("prev");
     });
 
   // ========================================================================= //
