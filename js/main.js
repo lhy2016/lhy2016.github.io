@@ -22,7 +22,7 @@ $(document).ready(function() {
     images: ["./images/home-bg.jpg", "./images/blog-post-2.jpg", "./images/blog-post-3.jpg"],
     loop: true,
     interval: 4000
-  }, 5000);
+  }, 6000);
   });
 
 
