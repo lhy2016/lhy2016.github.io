@@ -21,7 +21,7 @@ $(document).ready(function() {
   var bgswitcher;
   setTimeout(function(){
     bgswitcher = $("#header").bgswitcher({
-    images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/aviso.jpg"],
+    images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/monica.jpg", "./images/tahoe.jpg"],
     loop: true,
     interval: 6000
   }, 6000);
