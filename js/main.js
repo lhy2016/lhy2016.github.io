@@ -28,10 +28,10 @@ $(document).ready(function() {
   });
 
 
-  $("#arrow-forward").click(function() {
+  $("#arrow-forward").on("click", function() {
       bgswitcher.bgswitcher("next");
     });
-  $("#arrow-back").click(function() {
+  $("#arrow-back").on("click", function() {
       bgswitcher.bgswitcher("prev");
     });
 
