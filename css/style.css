@@ -641,7 +641,7 @@ nav ul li a {
   font-size:70px;
   position:absolute;
   top:45%;
-  left:2%;
+  left:1%;
   display:none;
   color:rgba(255,255,255,0.35);
   cursor: pointer;
@@ -650,7 +650,7 @@ nav ul li a {
   font-size:70px;
   position:absolute;
   top:45%;
-  right:2%;
+  right:1%;
   display:none;
   color:rgba(255,255,255,0.35);
   cursor: pointer;
@@ -717,6 +717,11 @@ nav ul li a {
 
 @media (min-width: 992px) {
   .container {
-    max-width: 930px;
+    max-width: 900px;
+  }
+}
+@media (max-width: 860px) {
+  #arrow-back, #arrow-forward {
+    display:none !important;
   }
 }
