@@ -720,7 +720,7 @@ nav ul li a {
     max-width: 900px;
   }
 }
-@media (max-width: 860px) {
+@media only screen and (max-width: 860px) {
   #arrow-back, #arrow-forward {
     display:none !important;
   }
