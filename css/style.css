@@ -725,3 +725,26 @@ nav ul li a {
     display:none !important;
   }
 }
+#heart-tag {
+  position:absolute;
+  top: 20px;
+  right: 50px;
+  background-color: rgba(255,255,255,0.35);
+  height:38px;
+  border-radius:5px;
+}
+#heart-icon {
+  display:inline-block;
+  color:white;
+  padding:10px;
+  font-size:18px;
+  
+}
+#icon-text {
+  display:inline-block;
+  height:38px;
+  float: right;
+  line-height: 38px;
+  padding-right: 15px;
+  color:white;
+}
