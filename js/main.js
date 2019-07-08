@@ -27,7 +27,7 @@ $(document).ready(function() {
     instruction: ['',
                   'Taken at Laguna Beach, CA',
                   'Took a photo of my grilfriend who\'s taking photos of a seagull, at gorgeous Santa Monica Beach!',
-                  'My favourite Lake Tahoe',
+                  'Taken at my favourite Lake Tahoe',
                   ]
   }, 5500);
   });
