@@ -728,11 +728,57 @@ nav ul li a {
 #heart-tag {
   position:absolute;
   top: 20px;
-  right: 50px;
+  right: 30px;
   background-color: rgba(255,255,255,0.35);
   height:38px;
   border-radius:5px;
+  display:none;
 }
+#heart-tag:hover {
+  border-radius:5px 5px 0px 0px !important;
+}
+.heart-tag-active {
+  -webkit-animation-name: borderRadiusRemove; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
+  animation-name: borderRadiusRemove;
+  animation-duration: 0.7s;
+
+}
+@keyframes borderRadiusRemove {
+  0%   {border-radius:5px;}
+  100% {border-radius:5px 5px 0px 0px;}
+}
+@-webkit-keyframes borderRadiusRemove {
+  0%   {border-radius:5px;}
+  100% {border-radius:5px 5px 0px 0px;}
+}
+#hover-content {
+  position:absolute;
+  top: 58px;
+  right: 30px;
+  background-color: rgba(255,255,255,0.35);
+  max-width:220px;
+  overflow: hidden;
+  border-radius:5px 0px 5px 5px;
+  word-wrap: break-word;
+  padding:15px;
+  color: #f0f0f0;
+  display:none;
+  -webkit-animation-name: slideTopRight; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
+  animation-name: slideTopRight;
+  animation-duration: 0.7s;
+}
+
+@keyframes slideTopRight {
+  0%   {max-height:0px; max-width:65px; border-radius:5px;}
+  100% {max-height:400px; max-width:220px; border-radius:5px 0px 5px 5px; }
+}
+@-webkit-keyframes slideTopRight {
+  0%   {max-height:0px; max-width:65px; border-radius:5px;}
+  100% {max-height:400px; max-width:220px; border-radius:5px 0px 5px 5px;}
+}
+
 #heart-icon {
   display:inline-block;
   color:white;
@@ -747,4 +793,5 @@ nav ul li a {
   line-height: 38px;
   padding-right: 15px;
   color:white;
+  font-family:Roboto, sans-serif;
 }

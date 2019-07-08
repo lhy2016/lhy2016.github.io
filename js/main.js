@@ -18,14 +18,19 @@ $(document).ready(function() {
       }
 
   });
-  // var bgswitcher;
-  // setTimeout(function(){
-  //   bgswitcher = $("#header").bgswitcher({
-  //   images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/monica.jpg", "./images/tahoe.jpg"],
-  //   loop: true,
-  //   interval: 6000
-  // }, 6000);
-  // });
+  var bgswitcher;
+  setTimeout(function(){
+    bgswitcher = $("#header").bgswitcher({
+    images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/monica.jpg", "./images/tahoe.jpg"],
+    loop: true,
+    interval: 5500,
+    instruction: ['',
+                  'Taken at Laguna Beach, CA',
+                  'Took a photo of my grilfriend who\'s taking photos of a seagull, at gorgeous Santa Monica Beach!',
+                  'My favourite Lake Tahoe',
+                  ]
+  }, 5500);
+  });
 
 
   $("#arrow-forward").on("click", function() {
