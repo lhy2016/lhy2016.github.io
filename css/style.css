@@ -318,7 +318,7 @@ nav ul li a {
 }
 
 #about .about-descr .p-heading {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Noto Serif', serif;
   font-size: 28px;
   text-align: left;
 }
@@ -735,14 +735,14 @@ nav ul li a {
   display:none;
 }
 #heart-tag:hover {
-  border-radius:5px 5px 0px 0px !important;
+  /*border-radius:5px 5px 0px 0px !important;*/
 }
 .heart-tag-active {
   -webkit-animation-name: borderRadiusRemove; /* Safari 4.0 - 8.0 */
   -webkit-animation-duration: 0.7s; /* Safari 4.0 - 8.0 */
   animation-name: borderRadiusRemove;
   animation-duration: 0.7s;
-
+  border-radius:5px 5px 0px 0px !important;
 }
 @keyframes borderRadiusRemove {
   0%   {border-radius:5px;}
@@ -795,3 +795,15 @@ nav ul li a {
   color:white;
   font-family:Roboto, sans-serif;
 }
+.header-content .list-social li i.ion-social-facebook:hover {
+  color:#3b5998;
+}
+
+.header-content .list-social li i.ion-social-github:hover {
+  color:#6e5494;
+}
+
+.header-content .list-social li i.ion-social-linkedin:hover {
+  color:#0077b5;
+}
+
