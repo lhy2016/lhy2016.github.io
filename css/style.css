@@ -75,7 +75,7 @@ nav ul li a {
 }
 
 p {
-  margin: 25px 0;
+  margin:20px 0px;
   padding: 0;
   font-size: 15px;
   color: #999999;
@@ -83,12 +83,12 @@ p {
 }
 
 ::-moz-selection {
-  background: #b8a07e;
+  background: #cccccc;
   color: #fff;
 }
 
 ::selection {
-  background: #b8a07e;
+  background: #cccccc;
   color: #fff;
 }
 
@@ -324,7 +324,7 @@ nav ul li a {
 }
 
 #about .about-descr .separator {
-  max-width: 80%;
+  max-width: 85%;
   margin-bottom: 0;
   text-align: left;
 }
@@ -700,6 +700,12 @@ nav ul li a {
   color:white;
   display:none;
   top:-18px;
+}
+.moreAboutMe:focus {
+  outline:none;
+}
+.moreAboutMe:hover {
+  cursor:pointer;
 }
 .header-content .list-social {
   opacity:0;

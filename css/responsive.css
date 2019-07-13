@@ -23,6 +23,9 @@
   nav {
     padding: 10px 15px;
   }
+  #about {
+    padding-top:90px;
+  }
   .nav-menu {
     margin-top: 40px;
     display: none;
@@ -55,8 +58,11 @@
     margin-top: 0%;
     margin-left: calc(0% - 0px);
   }
+  .about-img, .div-img-bg {
+    display:none;
+  }
   #about .about-descr .p-heading {
-    font-size: 20px;
+    font-size: 27px;
   }
   #about .about-descr .separator {
     max-width: 100%;
@@ -121,6 +127,12 @@
   }
   #about .div-img-bg {
     padding: 0;
+  }
+  .div-img-bg, .about-img {
+    display:none;
+  }
+  #about {
+    padding-top:90px;
   }
   #about .div-img-bg .about-img img {
     margin-top: 0%;

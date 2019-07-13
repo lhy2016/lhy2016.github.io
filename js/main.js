@@ -39,12 +39,17 @@ $(document).ready(function() {
   $("#arrow-back").on("click", function() {
       bgswitcher.bgswitcher("prev");
     });
+  $(".moreAboutMe").on("click", function() {
+      $('html, body').animate({
+        scrollTop: ($('#about').first().offset().top)
+      },500);
+  });
 
   // ========================================================================= //
   //  //SMOOTH SCROLL
   // ========================================================================= //
 
-
+   
   $(document).on("scroll", onScroll);
 
   $('a[href^="#"]').on('click', function(e) {
