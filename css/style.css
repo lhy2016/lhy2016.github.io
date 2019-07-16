@@ -813,3 +813,19 @@ nav ul li a {
   color:#0077b5;
 }
 
+.bar-container {
+  margin: auto;
+  width: 89%;
+
+}
+
+.services-block .skills-descp {
+  margin-top:10px;
+
+}
+.progressbar__label {
+  white-space:nowrap;
+}
+.skills-descp {
+  visibility: hidden;
+}

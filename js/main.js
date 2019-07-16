@@ -45,6 +45,10 @@ $(document).ready(function() {
       },500);
   });
 
+
+
+
+
   // ========================================================================= //
   //  //SMOOTH SCROLL
   // ========================================================================= //
@@ -215,6 +219,8 @@ $(document).ready(function() {
 
   $('.services-carousel').owlCarousel({
       autoplay: true,
+      autoplayTimeout:9000,
+      dotsSpeed:80,
       loop: true,
       margin: 20,
       dots: true,
@@ -222,6 +228,115 @@ $(document).ready(function() {
       responsiveClass: true,
       responsive: { 0: { items: 1 }, 768: { items: 2 }, 900: { items: 4 } }
     });
+    
+    $('.active').each(function() {
+      var children = $(this).children(".services-block");
+      if (children.length > 0) {
+          var $child = $(children[0]);
+          var index = $child.attr('id');
+          var chart = $child.children(".bar-container")[0];
+          var $curChart = $($child.children(".bar-container")[0]);
+          var svgs = $curChart.children("svg");
+          if (svgs.length == 0) {
+            var bar = new ProgressBar.SemiCircle(chart, {
+              strokeWidth: 6,
+              color: '#FFEA82',
+              trailColor: '#eee',
+              trailWidth: 3,
+              easing: 'easeInOut',
+              duration: 1000,
+              svgStyle: null,
+              text: {
+                value: inputtext[index],
+                className: 'progressbar__label',
+                alignToBottom: true
+              },
+              from: {color: '#FFEA82'},
+              to: {color: '#ED6A5A'},
+              // Set default step function for all animate calls
+              step: (state, bar) => {
+                bar.path.setAttribute('stroke', state.color);
+                var value = Math.round(bar.value() * 100);
+                if (value === 0) {
+                  bar.setText('');
+                } else {
+                  bar.setText(bar._opts.text.value + ": " + value + "%");
+                }
+
+                bar.text.style.color = state.color;
+              }
+            });
+
+            bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+            bar.text.style.fontSize = '16px';
+            bar.text.style.whiteSpace = 'nowrap';
+            bar.animate(progress[index], function() {
+              var $skillDesp = $($child.children(".skills-descp")[0]);
+              if (($skillDesp).css("visibility") == "hidden") {
+                ($skillDesp).css("visibility","visible");
+              }
+            });
+        }
+      }
+    });
+ 
+  $('.services-carousel').on('changed.owl.carousel', function(event) {
+    $(".bar-container").each(function() {
+        $(this).css("height", $(this).css("width")/2+5.0);
+      });
+  });
+
+  $('.services-carousel').on('translated.owl.carousel', function(event) {
+    $('.active').each(function() {
+      var children = $(this).children(".services-block");
+      if (children.length > 0) {
+          var $child = $(children[0]);
+          var index = $child.attr('id');
+          var chart = $child.children(".bar-container")[0];
+          var $curChart = $($child.children(".bar-container")[0]);
+          var svgs = $curChart.children("svg");
+          if (svgs.length == 0) {
+            var bar = new ProgressBar.SemiCircle(chart, {
+              strokeWidth: 6,
+              color: '#FFEA82',
+              trailColor: '#eee',
+              trailWidth: 3,
+              easing: 'easeInOut',
+              duration: 1000,
+              svgStyle: null,
+              text: {
+                value: inputtext[index],
+                className: 'progressbar__label',
+                alignToBottom: true
+              },
+              from: {color: '#FFEA82'},
+              to: {color: '#ED6A5A'},
+              // Set default step function for all animate calls
+              step: (state, bar) => {
+                bar.path.setAttribute('stroke', state.color);
+                var value = Math.round(bar.value() * 100);
+                if (value === 0) {
+                  bar.setText('');
+                } else {
+                  bar.setText(bar._opts.text.value + ": " + value + "%");
+                }
+
+                bar.text.style.color = state.color;
+              }
+            });
+
+            bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+            bar.text.style.fontSize = '16px';
+            bar.animate(progress[index], function() {
+              var $skillDesp = $($child.children(".skills-descp")[0]);
+              if (($skillDesp).css("visibility") == "hidden") {
+                ($skillDesp).css("visibility","visible");
+              }
+            });
+        }
+      }
+    });
+  })
 
 
   // ========================================================================= //
