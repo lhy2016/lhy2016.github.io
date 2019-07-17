@@ -829,3 +829,7 @@ nav ul li a {
 .skills-descp {
   visibility: hidden;
 }
+.services-carousel .owl-dot.active:focus {
+  outline-width:0px;
+  outline:none;
+}
