@@ -403,6 +403,7 @@ nav ul li a {
 #portfolio {
   position: relative;
   padding-bottom: 50px;
+  background-color:#f7f7f7;
 }
 
 #portfolio .portfolio-list {
@@ -832,4 +833,25 @@ nav ul li a {
 .services-carousel .owl-dot.active:focus {
   outline-width:0px;
   outline:none;
+}
+.resButton {
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #b8a07e;
+padding: 12px 0px;
+width:140px;
+border-radius: 15px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+}
+.resButton:hover {
+text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
+#resume .row .col-md-4 {
+  padding:15px 0px;
 }
