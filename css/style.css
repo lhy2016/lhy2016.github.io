@@ -855,3 +855,6 @@ transition: all 0.4s ease 0s;
 #resume .row .col-md-4 {
   padding:15px 0px;
 }
+#showResume {
+  cursor:pointer;
+}

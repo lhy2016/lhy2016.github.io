@@ -44,7 +44,24 @@ $(document).ready(function() {
         scrollTop: ($('#about').first().offset().top)
       },500);
   });
-
+  var doubleDown = "<i style=\"margin-left:5px\" class=\"fas fa-angle-double-down\" aria-hidden=\"true\"></i>";
+  var doubleUp = "<i style=\"margin-left:5px\" class=\"fas fa-angle-double-up\" aria-hidden=\"true\"></i>";
+  $("#showResume").on("click", function(event) {
+    event.preventDefault();
+    if ($(this).text() == "Expend") {
+      $("#myResume").animate({
+          height:"800px"
+      },500);
+      $(this).text("Collapse");
+      $(this).append(doubleUp);
+    } else {
+      $("#myResume").animate({
+          height:"0"
+      },500);
+      $(this).text("Expend");
+      $(this).append(doubleDown);
+    }
+  });
 
 
 
