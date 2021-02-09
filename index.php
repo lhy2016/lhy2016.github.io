@@ -6,8 +6,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Welcome - Haoyang's Personal Site</title>
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+  <meta content="haoyang, haoyang liu, software engineer, lhy920104, personal site, portfolio" name="keywords">
+  <meta content="Haoyang's personal site" name="description">
 
   <!-- Dependencies -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,500i,600,600i,700,700i|Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
@@ -16,9 +16,12 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/magnific-popup/magnific-popup.css" rel="stylesheet">
   <link href="lib/hover/hover.min.css" rel="stylesheet">
-
+  <link href='https://fonts.googleapis.com/css?family=Bilbo Swash Caps' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap" rel="stylesheet">
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
 
   <!-- Responsive css -->
   <link href="css/responsive.css" rel="stylesheet">
@@ -33,46 +36,50 @@
 
   <!-- start section navbar -->
   <nav id="main-nav">
-    <div class="row">
-      <div class="container">
+    <!-- <div class="row"> -->
+    <div class="container">
 
-        <div class="logo">
-          <a href="index.html"><img src="images/logo.png" alt="logo"></a>
-        </div>
-
-        <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
-
-        <ul class="nav-menu list-unstyled">
-          <li><a href="#header" class="smoothScroll">Home</a></li>
-          <li><a href="#about" class="smoothScroll">About</a></li>
-          <li><a href="#resume" class="smoothScroll">Resume</a></li>
-          <li><a href="#portfolio" class="smoothScroll">Projects</a></li>
-          <li><a href="#contact" class="smoothScroll">Contact</a></li>
-        </ul>
-
+      <div class="logo">
+        <a href="index.php">
+          <!-- &ltHL &#8260&gt -->
+          <img src="images/logo1.jpg" alt="logo">
+        </a>
       </div>
+
+      <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+
+      <ul class="nav-menu list-unstyled">
+        <li><a href="#header" class="smoothScroll">Home</a></li>
+        <li><a href="#about" class="smoothScroll">About</a></li>
+        <li><a href="#resume" class="smoothScroll">Resume</a></li>
+        <li><a href="#portfolio" class="smoothScroll">Projects</a></li>
+        <li><a href="#contact" class="smoothScroll">Contact</a></li>
+      </ul>
+
     </div>
+    <!-- </div> -->
   </nav>
   <!-- End section navbar -->
 
 
   <!-- start section header -->
   <div id="header" class="home">
-    
+
     <div class="container" id="main-panel" style="position:relative">
       <div class="header-content">
-          <div style="height:12%"></div>
-        <h1 id = "typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;">
-            <button class = "moreAboutMe">About Me</button>
-            <span class="typed"></span></h1>
-<!--        <p class="liu">designer, developer, photographer</p>-->
+        <div style="height:12%"></div>
+        <h1 id="typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;">
+          <button class="moreAboutMe">About Me </button>
+          <span class="typed"></span>
+        </h1>
+        <!--        <p class="liu">designer, developer, photographer</p>-->
         <ul class="list-unstyled list-social">
           <li><a href="https://www.facebook.com/profile.php?id=100004179810966" target="_blank">
-            <i class="ion-social-facebook"></i></a></li>
+              <i class="ion-social-facebook"></i></a></li>
           <li><a href="https://github.com/lhy2016" target="_blank">
-            <i class="ion-social-github"></i></a></li>
+              <i class="ion-social-github"></i></a></li>
           <li><a href="https://www.linkedin.com/in/haoyang-liu-39156a164/" target="_blank">
-            <i class="ion-social-linkedin"></i></a></li>
+              <i class="ion-social-linkedin"></i></a></li>
           <li><a href="#"><i class="ion-ios-email"></i></a></li>
         </ul>
       </div>
@@ -82,8 +89,12 @@
       </div>
       <div id="hover-content"></div>
     </div>
-    <div id="arrow-back" onclick=""><ion-icon name="ios-arrow-back"></ion-icon></div>
-    <div id="arrow-forward" onclick=""><ion-icon name="ios-arrow-forward"></ion-icon></div>
+    <div id="arrow-back" onclick="">
+      <ion-icon name="ios-arrow-back"></ion-icon>
+    </div>
+    <div id="arrow-forward" onclick="">
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </div>
   </div>
   <!-- End section header -->
 
@@ -93,7 +104,7 @@
     <div class="container">
       <div class="row justify-content-between">
 
-        <div class="col-lg-4 ">
+        <div class="col-lg-4 col-md-4">
           <div class="div-img-bg">
             <div class="about-img">
               <img src="images/me.jpg" class="img-responsive" alt="me">
@@ -103,11 +114,8 @@
 
         <div class="col-lg-7">
           <div class="about-descr">
-
-            <p class="p-heading">I'm a software engineer focusing on web development using Java Spring, Python Django, React.js and jQuery. I'm actively looking for a software development position.</p>
-            <p class="separator">I always believe that interest should be the best motivation no matter what I'm doing. Programming is one of such things that I really have passion on because the knowledge and the skills I put in will eventually become the product I imagined, which always makes me happy. In last job, I developed some backend internal-use tools. However, I gradually find myself showing more interest in front-end work.</p>
-
-
+            <p class="p-heading">I'm a software engineer focusing on web development using Spring, Flask/Django, PHP and React.js. I'm actively looking for a software development position.</p>
+            <p class="separator">I always believe that interest should be the best motivation no matter what I do. Programming is one of such things that I really have passion on because the knowledge and the skills I put in will eventually become the product I imagined. The process always makes me happy. As an entry-level engineer, I'm making effort on continuously learning new stuff.</p>
           </div>
 
         </div>
@@ -121,78 +129,78 @@
   <div id="services">
     <div class="container">
 
-        <div class="services-carousel owl-theme">
+      <div class="services-carousel owl-theme">
 
-          <div class="services-block" id="0">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Major language. Developed console programs, GUI with Swing, web apps with JSP(Jstl).</p>
-
-          </div>
-
-          <div class="services-block" id="1">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Familiar with containers, bean life cycle, event handling, database connection etc.</p>
-
-          </div>
-
-          <div class="services-block" id="2">
-
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Secondary language. Developed image detection program using pretrained model and opencv.</p>
-
-          </div>
-
-          <div class="services-block" id="3">
-
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Familiar with urls routing, models, Admin, generic views, request handling etc. </p>
-
-          </div>
-
-          <div class="services-block" id="4">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Know default attributes and usages of most of tags. Know basic SEO mechanisms.</p>
-
-          </div>
-
-          <div class="services-block" id="5">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Box model, sizing and positioning, responsive, animation and render mechanisms.</p>
-
-          </div>
-          <div class="services-block" id="6">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">DOM element manipulation, form validation, JS object, JSON, Ajax(XMLHttpRequest).</p>
-
-          </div>
-           <div class="services-block" id="7">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">DOM element manipulation, Ajax call, event chaining, callback, plugin development.</p>
-
-          </div>
-          <div class="services-block" id="8">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Components design, usages of state and prop, virtual DOM, event, life cycle.</p>
-
-          </div>
-          <div class="services-block" id="9">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Grid View, form widgets, carousel, modal, tooltip and other library components.</p>
-
-          </div>
-          <div class="services-block" id="10">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">Developed simple stock checker app by handling get request and calling third party api. </p>
-
-          </div>
-           <div class="services-block" id="11">
-            <div class="bar-container"></div>
-            <p class="separator skills-descp">query, update, delete, insert, joins, count, group by, order by, schema design.</p>
-
-          </div>
-          
+        <div class="services-block" id="0">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Major language. Developed console programs, GUI with Swing, web apps with JSP(Jstl).</p>
 
         </div>
+
+        <div class="services-block" id="1">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Familiar with containers, bean life cycle, event handling, database connection etc.</p>
+
+        </div>
+
+        <div class="services-block" id="2">
+
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Secondary language. Developed image detection program using pretrained model and opencv.</p>
+
+        </div>
+
+        <div class="services-block" id="3">
+
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Familiar with urls routing, models, Admin, generic views, request handling etc. </p>
+
+        </div>
+
+        <div class="services-block" id="4">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Know default attributes and usages of most of tags. Know basic SEO mechanisms.</p>
+
+        </div>
+
+        <div class="services-block" id="5">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Box model, sizing and positioning, responsive, animation and render mechanisms.</p>
+
+        </div>
+        <div class="services-block" id="6">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">DOM element manipulation, form validation, JS object, JSON, Ajax(XMLHttpRequest).</p>
+
+        </div>
+        <div class="services-block" id="7">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">DOM element manipulation, Ajax call, event chaining, callback, plugin development.</p>
+
+        </div>
+        <div class="services-block" id="8">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Components design, usages of state and prop, virtual DOM, event, life cycle.</p>
+
+        </div>
+        <div class="services-block" id="9">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Grid View, form widgets, carousel, modal, tooltip and other library components.</p>
+
+        </div>
+        <div class="services-block" id="10">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">Developed simple stock checker app by handling get request and calling third party api. </p>
+
+        </div>
+        <div class="services-block" id="11">
+          <div class="bar-container"></div>
+          <p class="separator skills-descp">query, update, delete, insert, joins, count, group by, order by, schema design.</p>
+
+        </div>
+
+
+      </div>
 
     </div>
 
@@ -209,18 +217,18 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class = "row">
+          <div class="row">
             <div class="col-md-4">
-              <div class="button_cont" align="center"><a class="resButton" href="./file/Resume.pdf" target="_blank" rel="nofollow noopener">Open <i style = "margin-left:3px" class="fas fa-external-link-alt"></i></a></div>
+              <div class="button_cont" align="center"><a class="resButton" href="./file/Resume.pdf" target="_blank" rel="nofollow noopener">Open <i style="margin-left:3px" class="fas fa-external-link-alt"></i></a></div>
             </div>
             <div class="col-md-4">
-             <div class="button_cont" align="center"><a class="resButton" id="showResume">Expend<i style = "margin-left:5px" class="fas fa-angle-double-down"></i></a></div>
+              <div class="button_cont" align="center"><a class="resButton" id="showResume">Expend<i style="margin-left:5px" class="fas fa-angle-double-down"></i></a></div>
             </div>
             <div class="col-md-4">
               <div class="button_cont" align="center"><a class="resButton" href="./file/Resume.pdf" target="_blank" download="resume">Download <i class="fas fa-cloud-download-alt"></i></a></div>
             </div>
           </div>
-           <iframe id="myResume" src="./file/Resume.pdf" height="0" width="100%" style="border-width: 0px"></iframe>
+          <iframe id="myResume" src="./file/Resume.pdf" height="0" width="100%" style="border-width: 0px"></iframe>
         </div>
       </div>
     </div>
@@ -256,7 +264,7 @@
 
           <div class="portfolio-container">
 
-            <div class="col-lg-4 col-md-6 portfolio-thumbnail react" style = "display:none;">
+            <div class="col-lg-4 col-md-6 portfolio-thumbnail react" style="display:none;">
               <a class="popup-img" href="images/comingSoon.jpg" target="_blank">
                 <img src="images/comingSoon.jpg" alt="img">
               </a>
@@ -265,7 +273,7 @@
             <div class="col-lg-4 col-md-6 portfolio-thumbnail all php web">
               <a class="popup-img" href="http://haoyangliu.com/stock/stock.php" target="_blank">
                 <div class="hoverText">Stock Search</div>
-                <img src="images/stock.jpg"  alt="img">
+                <img src="images/stock.jpg" alt="img">
               </a>
             </div>
 
@@ -380,7 +388,7 @@
 
         <ul class="list-unstyled">
           <li><a href="https://www.facebook.com/profile.php?id=100004179810966">
-            <i class="ion-social-facebook"></i></a></li>
+              <i class="ion-social-facebook"></i></a></li>
           <li><a href="#"><i class="ion-social-github"></i></a></li>
           <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
           <li><a href="#"><i class="ion-ios-email"></i></a></li>

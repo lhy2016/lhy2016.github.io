@@ -10,11 +10,6 @@ $(document).ready(function() {
         var curHeight = set.eq(i).outerHeight();
         topBase -= (curHeight + 13);
         set.eq(i).css("top",topBase);
-        var arrowRight = set.eq(i).next();
-        var arrowHeight = arrowRight.outerHeight();
-        var left = set.eq(i).position().left + set.eq(i).outerWidth();
-        arrowRight.css("top", topBase + (curHeight - arrowHeight)/2.0);
-        arrowRight.css("left", left + arrowRight.width());
       }
 
   });
@@ -117,7 +112,7 @@ $(document).ready(function() {
   $(window).scroll(function() {
     var scroll = $(window).scrollTop();
     if (scroll > 200 ) {
-      $("#main-nav, #main-nav-subpage").slideDown(700);
+      $("#main-nav, #main-nav-subpage").slideDown(500);
       $("#main-nav-subpage").removeClass('subpage-nav');
     } else {
       $("#main-nav").slideUp(700);
@@ -143,49 +138,39 @@ $(document).ready(function() {
   var index = 0;
   $(function() {
     typedContent.typed({
-      strings: ["<span id='greeting'>Hi</span> there,", "I'm <span id='myName'>Haoyang Liu</span>.",  "I'm a <span id='role'>Web Developer</span>."],
+      strings: ["<span id='greeting'>Hi</span> there,", 
+                "I'm <span id='myName'>Haoyang Liu</span>.",  
+                "I'm a <span id='role'>Software Engineer</span>."],
       typeSpeed: 25,
       startDelay: 200,
       loop: false,
       onStringTyped: function() {
         var currentTop = $("#typeArea").position().top-15;
           headerContent.before(
-            "<h1 class = 'message' style=\"color:#eeeeee;position:absolute;top:"+currentTop
-            +"px;font-family: 'Roboto', sans-serif;padding:6px;"
-            +"background-color:rgba(30,30,30,0.35);border-radius: 7px\"><b>"
-            +typedContent.html()+"</b></h1>" +
-              "<span style = 'position:absolute;top:"+currentTop
-              +"px' class='arrow-right'></span>");
+            "<h1 class = 'message' style=\"top:"+currentTop+"px;\">" + 
+              "<b>" + typedContent.html()+"</b>"+
+              "<span class='arrow-right'></span>" + 
+            "</h1>");
         typedContent.empty();
-        var height = headerContent.prev(".arrow-right").prev("h1").outerHeight();
-        var arrow = headerContent.prev(".arrow-right");
-        arrow.css("top", arrow.position().top + height/2.0-10);
         $("#main-panel > h1").each(function(){
-            var arrow = $(this).next(".arrow-right");
             var height = $(this).outerHeight();
-            var width = $(this).width();
-            arrow.css("left", width+27);
             var newTop =  $(this).position().top - height - 13;
             $(this).animate({
                top: newTop,
             });
-            arrow.animate({
-              top: newTop + height/2.0-10,
-            });
-            //$(this).css("top", newTop);
         });
         if (index == 0) {
-          $("#greeting").css("background","-webkit-linear-gradient(#c46827, #dbb151)");
+          $("#greeting").css("background","linear-gradient(to right, #c46135, #ee9c10)");
           $("#greeting").css("-webkit-background-clip","text");
           $("#greeting").css("-webkit-text-fill-color","transparent");
         }
         else if (index == 1) {
-          $("#myName").css("background","-webkit-linear-gradient(#c46827, #dbb151)");
+          $("#myName").css("background","linear-gradient(to right, #c46135, #ee9c10)");
           $("#myName").css("-webkit-background-clip","text");
           $("#myName").css("-webkit-text-fill-color","transparent");
         }
         else if (index == 2) {
-          $("#role").css("background","-webkit-linear-gradient(#c46827, #dbb151)");
+          $("#role").css("background","linear-gradient(to right, #c46135, #ee9c10)");
           $("#role").css("-webkit-background-clip","text");
           $("#role").css("-webkit-text-fill-color","transparent");
           var currentHeight = $("#typeArea").outerHeight();
@@ -224,7 +209,7 @@ $(document).ready(function() {
 
         }
         index++;
-        },
+      },
       backSpeed:0,
       wantBackSpace:false
     });
