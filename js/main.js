@@ -2,7 +2,10 @@
 $(document).ready(function() {
 
   'use strict';
+  // 改变窗口大小时
   $( window ).resize(function() {
+    
+    // 调整三个打字message的位置
       var set = $(".header-content").prevAll("h1");
       var length = set.length;
       var topBase = $("#typeArea").position().top - 15;
@@ -177,13 +180,6 @@ $(document).ready(function() {
           $(".typed-cursor").html("");
           $("#typeArea").css("height", currentHeight);
 
-          // $(".header-content").prevAll().each(function(){
-          //   var curTop = $(this).position().top;
-          //   var curVh = $(window).height();
-          //   $(this).animate({
-          //     top: curTop - 20,
-          //   });
-          // });
           var arrowBack = $("#arrow-back");
           var arrowForward = $("#arrow-forward");
           var aboutMe = $(".moreAboutMe");
@@ -206,7 +202,6 @@ $(document).ready(function() {
           social.addClass('block').outerWidth();
           social.addClass('fade-in').one(null, function() {});
           social.css("opacity","1");
-
         }
         index++;
       },

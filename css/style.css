@@ -695,6 +695,7 @@ nav ul li a {
     border-top: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 5px solid rgba(30,30,30,0.35);
+    right: -5px;
 }
 .message, .typed, .typed-cursor {
   font-size:20px;
@@ -710,6 +711,7 @@ nav ul li a {
     border-top: 7.5px solid transparent;
     border-bottom: 7.5px solid transparent;
     border-left: 7.5px solid rgba(30,30,30,0.35);
+    right: -7.5px;
   }
 }
 @media screen and (min-width: 600px) {
@@ -722,6 +724,7 @@ nav ul li a {
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     border-left: 10px solid rgba(30,30,30,0.35);
+    right: -10px;
   }
 }
 .moreAboutMe {
