@@ -52,15 +52,13 @@ a:hover {
   transition: all 0.5s ease-in-out 0s;
 }
 
-a:hover, a:focus {
-  color: #b8a07e;
+a:hover{
+  color: rgb(238, 126, 61);
   text-decoration: underline;
 }
 
 nav ul li a {
-  padding: 2px 0 0 0;
   position: relative;
-  display: block;
   font-size: 12px;
   color: #999999;
   letter-spacing: 0.1em;
@@ -181,7 +179,6 @@ nav {
 }
 
 .nav-menu {
-  float: right;
   line-height: 32px;
   margin-bottom: 0;
   padding-top: 16px;
@@ -196,9 +193,7 @@ nav ul li {
 }
 
 nav ul li a {
-  padding: 2px 0 0 0;
   position: relative;
-  display: block;
   font-size: 14px;
   color: #999999;
   font-family: 'Poppins', helvetica;
@@ -299,8 +294,11 @@ nav ul li a {
 #about {
   width: 100%;
   height: auto;
-  background: #f7f7f7;
+  background: #dedede;
   padding-top: 190px;
+}
+#about p {
+  color: #6d6d6d;
 }
 
 #about .div-img-bg {
@@ -334,7 +332,8 @@ nav ul li a {
 /*-----------------------------------------------------------------------------------*/
 
 #services {
-  background: #f7f7f7;
+  margin-top: 50px;
+  background: inherit;
   position: relative;
   padding-bottom: 80px;
 }
@@ -383,12 +382,12 @@ nav ul li a {
   border-radius: 50%;
   border: 0;
   padding: 0 !important;
-  background-color: #ddd;
+  background-color: rgb(183, 183, 183);
   cursor: pointer;
 }
 
 .services-carousel .owl-dot.active {
-  background-color: #b8a07e;
+  background-color: rgb(238, 126, 61);
 }
 
 .owl-nav {
@@ -862,9 +861,6 @@ nav ul li a {
 }
 .progressbar__label {
   white-space:nowrap;
-}
-.skills-descp {
-  visibility: hidden;
 }
 .services-carousel .owl-dot.active:focus {
   outline-width:0px;

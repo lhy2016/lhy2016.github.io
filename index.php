@@ -114,10 +114,23 @@
 
         <div class="col-lg-7">
           <div class="about-descr">
-            <p class="p-heading">I'm a software engineer focusing on web development using Spring, Flask/Django, PHP and React.js. I'm actively looking for a software development position.</p>
-            <p class="separator">I always believe that interest should be the best motivation no matter what I do. Programming is one of such things that I really have passion on because the knowledge and the skills I put in will eventually become the product I imagined. The process always makes me happy. As an entry-level engineer, I'm making effort on continuously learning new stuff.</p>
+            <p class="p-heading">I'm a software engineer focusing on web development using Spring,
+              Flask/Django, PHP and React.js. I'm actively looking for a software development position.
+            </p>
+            <p class="separator">I always believe that interest should be the best motivation no matter what
+              I do. Programming is one of such things that I really have passion on because the knowledge
+              and the skills I put in will eventually become the product I imagined. This process always
+              brings satisfaction. As an entry-level engineer, I'm making effort on continuously learning new
+              stuff.</p>
           </div>
 
+        </div>
+      </div>
+    </div>
+
+    <div id="services">
+      <div class="container">
+        <div class="services-carousel owl-theme">
         </div>
       </div>
     </div>
@@ -126,85 +139,7 @@
 
 
   <!-- start section services -->
-  <div id="services">
-    <div class="container">
 
-      <div class="services-carousel owl-theme">
-
-        <div class="services-block" id="0">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Major language. Developed console programs, GUI with Swing, web apps with JSP(Jstl).</p>
-
-        </div>
-
-        <div class="services-block" id="1">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Familiar with containers, bean life cycle, event handling, database connection etc.</p>
-
-        </div>
-
-        <div class="services-block" id="2">
-
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Secondary language. Developed image detection program using pretrained model and opencv.</p>
-
-        </div>
-
-        <div class="services-block" id="3">
-
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Familiar with urls routing, models, Admin, generic views, request handling etc. </p>
-
-        </div>
-
-        <div class="services-block" id="4">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Know default attributes and usages of most of tags. Know basic SEO mechanisms.</p>
-
-        </div>
-
-        <div class="services-block" id="5">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Box model, sizing and positioning, responsive, animation and render mechanisms.</p>
-
-        </div>
-        <div class="services-block" id="6">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">DOM element manipulation, form validation, JS object, JSON, Ajax(XMLHttpRequest).</p>
-
-        </div>
-        <div class="services-block" id="7">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">DOM element manipulation, Ajax call, event chaining, callback, plugin development.</p>
-
-        </div>
-        <div class="services-block" id="8">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Components design, usages of state and prop, virtual DOM, event, life cycle.</p>
-
-        </div>
-        <div class="services-block" id="9">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Grid View, form widgets, carousel, modal, tooltip and other library components.</p>
-
-        </div>
-        <div class="services-block" id="10">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">Developed simple stock checker app by handling get request and calling third party api. </p>
-
-        </div>
-        <div class="services-block" id="11">
-          <div class="bar-container"></div>
-          <p class="separator skills-descp">query, update, delete, insert, joins, count, group by, order by, schema design.</p>
-
-        </div>
-
-
-      </div>
-
-    </div>
-
-  </div>
   <!-- end section services -->
   <div id="resume" class="text-center paddsection">
 

@@ -16,6 +16,7 @@ $(document).ready(function() {
       }
 
   });
+  // Home背景图Switcher
   var bgswitcher;
   setTimeout(function(){
     bgswitcher = $("#header").bgswitcher({
@@ -30,18 +31,22 @@ $(document).ready(function() {
   }, 5500);
   });
 
-
+  // 背景图切换 左右按钮
   $("#arrow-forward").on("click", function() {
       bgswitcher.bgswitcher("next");
     });
   $("#arrow-back").on("click", function() {
       bgswitcher.bgswitcher("prev");
     });
+  
+  // About Me 按钮滚屏
   $(".moreAboutMe").on("click", function() {
       $('html, body').animate({
         scrollTop: ($('#about').first().offset().top)
       },500);
   });
+
+  // Resume部分 按钮
   var doubleDown = "<i style=\"margin-left:5px\" class=\"fas fa-angle-double-down\" aria-hidden=\"true\"></i>";
   var doubleUp = "<i style=\"margin-left:5px\" class=\"fas fa-angle-double-up\" aria-hidden=\"true\"></i>";
   $("#showResume").on("click", function(event) {
@@ -62,10 +67,8 @@ $(document).ready(function() {
   });
 
 
-
-
   // ========================================================================= //
-  //  //SMOOTH SCROLL
+  //  //SMOOTH SCROLL, 点击navbar的link 页面平滑滚动到相应的区
   // ========================================================================= //
 
    
@@ -78,7 +81,7 @@ $(document).ready(function() {
     $('a').each(function() {
       $(this).removeClass('active');
       if ($(window).width() < 768) {
-        $('.nav-menu').slideUp();
+        $('#main-nav .responsive').click();
       }
     });
 
@@ -92,19 +95,37 @@ $(document).ready(function() {
       'scrollTop': target.offset().top - 80
     }, 500, 'swing', function() {
       window.location.hash = target.selector;
+      
       $(document).on("scroll", onScroll);
     });
   });
 
-
   function onScroll(event) {
     if ($('.home').length) {
       var scrollPos = $(document).scrollTop();
-      $('nav ul li a').each(function() {
+      $('nav#main-nav ul.nav-menu li a').each(function(index) {
         var currLink = $(this);
+        var top = $(this.hash).offset().top - $(window).scrollTop();
+        var height = $(this.hash).outerHeight();
+        if (top <= 90 && top >= 0 - height + 90) {
+          $('nav#main-nav ul.nav-menu li a').removeClass('active');
+          $(this).addClass('active');
+        } 
+        if (index == $('nav#main-nav ul.nav-menu li a').length - 1 && isAtPageBottom()) {
+          $('nav#main-nav ul.nav-menu li a').removeClass('active');
+          $(this).addClass('active');
+        }
+
         var refElement = $(currLink.attr("href"));
+        
       });
     }
+  }
+  function isAtPageBottom() {
+    var d = document.documentElement;
+    var offset = d.scrollTop + window.innerHeight;
+    var height = d.offsetHeight;
+    return offset >= height;
   }
 
   // ========================================================================= //
@@ -129,7 +150,13 @@ $(document).ready(function() {
   // ========================================================================= //
 
   $('.responsive').on('click', function(e) {
-    $('.nav-menu').slideToggle();
+    // $('.nav-menu').slideToggle();
+    $('.nav-menu').toggleClass("show");
+    if ($('.nav-menu').hasClass("show")) {
+      $('.responsive').html('<i data-icon-"m" class="ionicons ion-close-round"></i>');
+    } else {
+      $('.responsive').html('<i data-icon="m" class="ion-navicon-round"></i>');
+    }
   });
 
   // ========================================================================= //
@@ -213,127 +240,143 @@ $(document).ready(function() {
   //  Owl Carousel Services
   // ========================================================================= //
 
+  for(var i = 0; i < skilArr.length; i++) {
+    var progress = skilArr[i]['exp']/7*100 + "%";
+    var barBackColor = "color" in skilArr[i] ? skilArr[i]["color"].split(",")[1] : "grey";
+    var barColor = "color" in skilArr[i] ? skilArr[i]["color"].split(",")[0] : "red";
+    $("#services .services-carousel").append('\
+        <div class="services-block" id="'+ i +'">\
+          <div class="logo-container">\
+            <img src="images/'+ skilArr[i]['skill']+'.png" style="width:' + skilArr[i]["width"] + 'px;">\
+          </div>\
+          <div class="bar-back" style="background-color:'+ barBackColor +';">\
+            <div class="bar" style="width: ' + progress + ';background-color:' + barColor + ' ">\
+              <div class="bar-text">'+ skilArr[i]['exp'] + (skilArr[i]['exp'] > 1 ? ' yrs' : ' yr') + '</div></div>\
+          </div>\
+          <p class="separator skills-descp">'+ skilArr[i]['content'] +'</p>\
+        </div>'); 
+  }
 
   $('.services-carousel').owlCarousel({
       autoplay: true,
       autoplayTimeout:9000,
       dotsSpeed:80,
       loop: true,
-      margin: 20,
+      margin: 0,
       dots: true,
       nav: false,
       responsiveClass: true,
       responsive: { 0: { items: 1 }, 768: { items: 2 }, 900: { items: 4 } }
     });
-    
-    $('.active').each(function() {
-      var children = $(this).children(".services-block");
-      if (children.length > 0) {
-          var $child = $(children[0]);
-          var index = $child.attr('id');
-          var chart = $child.children(".bar-container")[0];
-          var $curChart = $($child.children(".bar-container")[0]);
-          var svgs = $curChart.children("svg");
-          if (svgs.length == 0) {
-            var bar = new ProgressBar.SemiCircle(chart, {
-              strokeWidth: 6,
-              color: '#FFEA82',
-              trailColor: '#eee',
-              trailWidth: 3,
-              easing: 'easeInOut',
-              duration: 1000,
-              svgStyle: null,
-              text: {
-                value: inputtext[index],
-                className: 'progressbar__label',
-                alignToBottom: true
-              },
-              from: {color: '#FFEA82'},
-              to: {color: '#ED6A5A'},
-              // Set default step function for all animate calls
-              step: (state, bar) => {
-                bar.path.setAttribute('stroke', state.color);
-                var value = Math.round(bar.value() * 100);
-                if (value === 0) {
-                  bar.setText('');
-                } else {
-                  bar.setText(bar._opts.text.value + ": " + value + "%");
-                }
 
-                bar.text.style.color = state.color;
-              }
-            });
+  //   $('.owl-item.active').each(function() {
+  //     var children = $(this).children(".services-block");
+  //     if (children.length > 0) {
+  //         var $child = $(children[0]);
+  //         var index = $child.attr('id');
+  //         var chart = $child.children(".bar-container")[0];
+  //         var $curChart = $($child.children(".bar-container")[0]);
+  //         var svgs = $curChart.children("svg");
+  //         if (svgs.length == 0) {
+  //           var bar = new ProgressBar.SemiCircle(chart, {
+  //             strokeWidth: 6,
+  //             color: '#FFEA82',
+  //             trailColor: '#eee',
+  //             trailWidth: 3,
+  //             easing: 'easeInOut',
+  //             duration: 1000,
+  //             svgStyle: null,
+  //             text: {
+  //               value: inputtext[index],
+  //               className: 'progressbar__label',
+  //               alignToBottom: true
+  //             },
+  //             from: {color: '#FFEA82'},
+  //             to: {color: '#ED6A5A'},
+  //             // Set default step function for all animate calls
+  //             step: (state, bar) => {
+  //               bar.path.setAttribute('stroke', state.color);
+  //               var value = Math.round(bar.value() * 100);
+  //               if (value === 0) {
+  //                 bar.setText('');
+  //               } else {
+  //                 bar.setText(bar._opts.text.value + ": " + value + "%");
+  //               }
 
-            bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-            bar.text.style.fontSize = '16px';
-            bar.text.style.whiteSpace = 'nowrap';
-            bar.animate(progress[index], function() {
-              var $skillDesp = $($child.children(".skills-descp")[0]);
-              if (($skillDesp).css("visibility") == "hidden") {
-                ($skillDesp).css("visibility","visible");
-              }
-            });
-        }
-      }
-    });
+  //               bar.text.style.color = state.color;
+  //             }
+  //           });
+
+  //           bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+  //           bar.text.style.fontSize = '16px';
+  //           bar.text.style.whiteSpace = 'nowrap';
+  //           bar.animate(progress[index], function() {
+  //             var $skillDesp = $($child.children(".skills-descp")[0]);
+  //             if (($skillDesp).css("visibility") == "hidden") {
+  //               ($skillDesp).css("visibility","visible");
+  //             }
+  //           });
+  //       }
+  //     }
+  //   });
  
-  $('.services-carousel').on('changed.owl.carousel', function(event) {
-    $(".bar-container").each(function() {
-        $(this).css("height", $(this).css("width")/2+5.0);
-      });
-  });
+  // $('.services-carousel').on('changed.owl.carousel', function(event) {
+  //   $(".bar-container").each(function() {
+  //       $(this).css("height", $(this).css("width")/2+5.0);
+  //     });
+  // });
 
-  $('.services-carousel').on('translated.owl.carousel', function(event) {
-    $('.active').each(function() {
-      var children = $(this).children(".services-block");
-      if (children.length > 0) {
-          var $child = $(children[0]);
-          var index = $child.attr('id');
-          var chart = $child.children(".bar-container")[0];
-          var $curChart = $($child.children(".bar-container")[0]);
-          var svgs = $curChart.children("svg");
-          if (svgs.length == 0) {
-            var bar = new ProgressBar.SemiCircle(chart, {
-              strokeWidth: 6,
-              color: '#FFEA82',
-              trailColor: '#eee',
-              trailWidth: 3,
-              easing: 'easeInOut',
-              duration: 1000,
-              svgStyle: null,
-              text: {
-                value: inputtext[index],
-                className: 'progressbar__label',
-                alignToBottom: true
-              },
-              from: {color: '#FFEA82'},
-              to: {color: '#ED6A5A'},
-              // Set default step function for all animate calls
-              step: (state, bar) => {
-                bar.path.setAttribute('stroke', state.color);
-                var value = Math.round(bar.value() * 100);
-                if (value === 0) {
-                  bar.setText('');
-                } else {
-                  bar.setText(bar._opts.text.value + ": " + value + "%");
-                }
+  // $('.services-carousel').on('translated.owl.carousel', function(event) {
+  //   $('.active').each(function() {
+  //     var children = $(this).children(".services-block");
+  //     if (children.length > 0) {
+  //         var $child = $(children[0]);
+  //         var index = $child.attr('id');
+  //         var chart = $child.children(".bar-container")[0];
+  //         var $curChart = $($child.children(".bar-container")[0]);
+  //         var svgs = $curChart.children("svg");
+  //         if (svgs.length == 0) {
+  //           var bar = new ProgressBar.SemiCircle(chart, {
+  //             strokeWidth: 6,
+  //             color: '#FFEA82',
+  //             trailColor: '#eee',
+  //             trailWidth: 3,
+  //             easing: 'easeInOut',
+  //             duration: 1000,
+  //             svgStyle: null,
+  //             text: {
+  //               value: inputtext[index],
+  //               className: 'progressbar__label',
+  //               alignToBottom: true
+  //             },
+  //             from: {color: '#FFEA82'},
+  //             to: {color: '#ED6A5A'},
+  //             // Set default step function for all animate calls
+  //             step: (state, bar) => {
+  //               bar.path.setAttribute('stroke', state.color);
+  //               var value = Math.round(bar.value() * 100);
+  //               if (value === 0) {
+  //                 bar.setText('');
+  //               } else {
+  //                 bar.setText(bar._opts.text.value + ": " + value + "%");
+  //               }
 
-                bar.text.style.color = state.color;
-              }
-            });
+  //               bar.text.style.color = state.color;
+  //             }
+  //           });
 
-            bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-            bar.text.style.fontSize = '16px';
-            bar.animate(progress[index], function() {
-              var $skillDesp = $($child.children(".skills-descp")[0]);
-              if (($skillDesp).css("visibility") == "hidden") {
-                ($skillDesp).css("visibility","visible");
-              }
-            });
-        }
-      }
-    });
-  })
+  //           bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+  //           bar.text.style.fontSize = '16px';
+  //           bar.animate(progress[index], function() {
+  //             var $skillDesp = $($child.children(".skills-descp")[0]);
+  //             if (($skillDesp).css("visibility") == "hidden") {
+  //               ($skillDesp).css("visibility","visible");
+  //             }
+  //           });
+  //       }
+  //     }
+  //   });
+  // })
 
 
   // ========================================================================= //
