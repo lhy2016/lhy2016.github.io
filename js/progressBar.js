@@ -6,41 +6,41 @@ var skilArr = [
         "width": "90",
         "skill": "Java",
         "exp": "6",
-        "content": "Major language. Data structures, APIs, OO concepts, Generics, Multithreading. Developed console programs, web automation tools and Swing app"
+        "content": "Data structures, APIs, OO, Generics, Multithreading"
     },
     {   "color": "#5fb92e,#adadad",
         "width": "125",
         "skill": "Spring",
         "exp": "2",
-        "content": "IoC, Bean, dependency injection, AOP, event handling, Spring MVC, JDBC. Developed web applications with Spring MVC"
+        "content": "IoC, Bean, DI, AOP, event handling, Spring MVC, JDBC"
     },
     {
         "color": "#3270a1,#adadad",
         "width": "125",
         "skill": "Python",
         "exp": "3",
-        "content": "Secondary language. pandas, numpy, matplotlib, regular expression, json, scikit learn. Developed web automation tool with Selenium Python"
+        "content": "pandas, numpy, matplotlib, regular expression, json, scikit learn"
     },
     {
         "color": "#0a2f20,#adadad",
         "width": "112",
         "skill": "Django",
         "exp": "2",
-        "content": "Request mapping/handling, routing, ORM, SqlLite, Admin. Developed face singin web application"
+        "content": "Request mapping/handling, routing, ORM, SqlLite, Admin"
     }, 
     {
         "color": "#111111,#adadad",
         "width": "53",
         "skill": "Flask",
         "exp": "3",
-        "content": "Request mapping/handling, routing, template, blueprint, SQLAlchemy, Session, Message Flashing. Developed a property sale/rental web app with Flask"
+        "content": "Request mapping/handling, template, blueprint, Session, Message Flashing"
     }, 
     {
         "color": "#617cbe,#adadad",
         "width": "80",
         "skill": "PHP",
         "exp": "2",
-        "content": "Session, Cookies, HTML embedded or MVC. Developed an online learning platform with online courses, forum, blog and news section"
+        "content": "Session, Cookies, HTML embedded or MVC"
     }, 
     {
         "color": "#e2b161,#adadad",
@@ -61,7 +61,7 @@ var skilArr = [
         "width": "105",
         "skill": "CSS",
         "exp": "5",
-        "content": "Profficient with box model, sizing and positioning, Flexbox, css selectors, rules overiding mechanisms, media query, css 3D, animation"
+        "content": "Sizing and positioning, Flexbox, selectors, overiding, media query, 3D, animation"
     }, 
     {
         "color": "#ce679a,#adadad",
@@ -75,28 +75,28 @@ var skilArr = [
         "width": "90",
         "skill": "Bootstrap",
         "exp": "4",
-        "content": "container, grid system, responsiveness, drop-down, pagination, button group, forms, modal, carousel."
+        "content": "Grid system, responsive, drop-down, pagination, modal, carousel, other widgets"
     }, 
     {
         "color": "#f0db4f,#adadad",
         "width": "62",
         "skill": "Javascript",
         "exp": "4",
-        "content": "DOM manipulation, APIs, DOM query methods, Event handling, Closures, Callbacks, Promises, XMLHttpRequest"
+        "content": "DOM manipulation, APIs, query methods, Event, Closures, Callbacks, Promises, XHR"
     }, 
     {
         "color": "#4d7daa,#adadad",
         "width": "110",
         "skill": "jQuery",
         "exp": "4",
-        "content": "DOM manipulation, APIs, DOM query methods, Event handling, Ajax, plugin"
+        "content": "DOM manipulation, APIs, DOM query methods, Event, Ajax, jQuery object, plugin"
     }, 
     {
         "color": "#a5dceb,#adadad",
         "width": "115",
         "skill": "React",
         "exp": "6",
-        "content": "props and states, value passing between components, functional or class components, Refs, hooks. Developed a property sale/rental web app with React"
+        "content": "props and states, data passing, functional or class components, Refs, hooks"
     }
 ];
 
