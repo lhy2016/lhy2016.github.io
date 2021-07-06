@@ -1,3 +1,51 @@
+<?php 
+  $errors = [];
+  if (isset($_POST['contact'])) {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+
+    if (empty($name)) {
+        $errors[] = 'Name is empty';
+    }
+    if (empty($email)) {
+        $errors[] = 'Email is empty';
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = 'Email is invalid';
+    }
+    if (empty($subject)) {
+      $errors[] = 'Subject is empty';
+    } 
+    if (empty($message)) {
+        $errors[] = 'Message is empty';
+    }
+    if (!empty($errors)) {
+      $allErrors = join('\n', $errors);
+      echo "<Script>alert('" . $allErrors . "')</Script>";
+    } else {
+      $cookieName = "lastMailTS";
+      $cur = time();
+      if (!isset($_COOKIE[$cookieName]) || $cur - $_COOKIE[$cookieName] > 180) {
+        $toEmail = 'lhy920104@gmail.com';
+      // $headers = ['From' => $email, 'Reply-To' => $toEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
+        $bodyParagraphs = ["Personal Website Contact Form", "Name: {$name}", "Email: {$email}", "Message:", $message];
+        $body = join("\n", $bodyParagraphs);
+        $msg = "";
+        $result = mail($toEmail, $subject, $body);
+        if ($result) {
+            $msg = "Succeed. I'll get back to you shortly.";
+            setcookie($cookieName, time(), time() + (86400));
+        } else {
+            $msg = 'Oops, something went wrong. Please try again later';
+        }
+        echo '<Script>alert("' . $msg . '")</Script>';
+      } else {
+        echo '<Script>alert("Please wait '. (180 - ($cur - $_COOKIE[$cookieName])) .' s to send another email.")</Script>';
+      }
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -260,50 +308,45 @@
               <h2 class="mb-30">CONTACT ME</h2>
 
               <ul class="contact-details">
-                <li><span>Or Email me: lhy920104@gmail.com</span></li>
-                <li><span>Please feel free to </span></li>
-                <li><span>ask any questions!</span></li>
+                <li><span>Please feel free to ask any questions!</span></li>
               </ul>
 
             </div>
           </div>
 
           <div class="col-lg-6">
-            <form action="https://formspree.io/lhy920104@gmail.com" method="POST" role="form" class="contactForm">
+            <form id="contact-form" action=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]#contact"; ?> method="POST" role="form" class="contactForm">
               <div class="row">
-                <div id="sendmessage">Your message has been sent. Thank you!</div>
-                <div id="errormessage"></div>
-
                 <div class="col-lg-6">
                   <div class="form-group contact-block1">
-                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" />
                     <div class="validation"></div>
                   </div>
                 </div>
 
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" />
                     <div class="validation"></div>
                   </div>
                 </div>
 
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" />
                     <div class="validation"></div>
                   </div>
                 </div>
 
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <textarea class="form-control" name="message" rows="12" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                    <textarea class="form-control" name="message" rows="12" placeholder="Message"></textarea>
                     <div class="validation"></div>
                   </div>
                 </div>
 
                 <div class="col-lg-12">
-                  <input type="submit" class="btn btn-defeault btn-send" value="Send message">
+                  <input type="submit" name="contact" class="btn btn-defeault btn-send" value="Send message">
                 </div>
 
               </div>
@@ -343,13 +386,13 @@
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/magnific-popup/magnific-popup.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/progress-bar/progressbar.min.js"></script>
   <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
   <script src="https://kit.fontawesome.com/5511ce970b.js"></script>
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
   <script src="js/progressBar.js"></script>
+  <script src="js/validate.js"></script>
 </body>
 
 </html>
