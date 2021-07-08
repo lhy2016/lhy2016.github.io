@@ -1,50 +1,5 @@
 <?php 
-  $errors = [];
-  if (isset($_POST['contact'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
-
-    if (empty($name)) {
-        $errors[] = 'Name is empty';
-    }
-    if (empty($email)) {
-        $errors[] = 'Email is empty';
-    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = 'Email is invalid';
-    }
-    if (empty($subject)) {
-      $errors[] = 'Subject is empty';
-    } 
-    if (empty($message)) {
-        $errors[] = 'Message is empty';
-    }
-    if (!empty($errors)) {
-      $allErrors = join('\n', $errors);
-      echo "<Script>alert('" . $allErrors . "')</Script>";
-    } else {
-      $cookieName = "lastMailTS";
-      $cur = time();
-      if (!isset($_COOKIE[$cookieName]) || $cur - $_COOKIE[$cookieName] > 180) {
-        $toEmail = 'lhy920104@gmail.com';
-      // $headers = ['From' => $email, 'Reply-To' => $toEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
-        $bodyParagraphs = ["Personal Website Contact Form", "Name: {$name}", "Email: {$email}", "Message:", $message];
-        $body = join("\n", $bodyParagraphs);
-        $msg = "";
-        $result = mail($toEmail, $subject, $body);
-        if ($result) {
-            $msg = "Succeed. I'll get back to you shortly.";
-            setcookie($cookieName, time(), time() + (86400));
-        } else {
-            $msg = 'Oops, something went wrong. Please try again later';
-        }
-        echo '<Script>alert("' . $msg . '")</Script>';
-      } else {
-        echo '<Script>alert("Please wait '. (180 - ($cur - $_COOKIE[$cookieName])) .' s to send another email.")</Script>';
-      }
-    }
-  }
+  session_start(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -315,7 +270,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form id="contact-form" action=<?php echo "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]#contact"; ?> method="POST" role="form" class="contactForm">
+            <form id="contact-form" action="message.php" method="POST" role="form" class="contactForm">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group contact-block1">
@@ -375,6 +330,12 @@
       </div>
     </div>
   </div>
+  <?php 
+    if(isset($_SESSION["message"])) {
+      echo "<Script>alert('". $_SESSION["message"] ."');</Script>";
+      unset($_SESSION["message"]);
+    }
+  ?>
   <!-- End section footer -->
 
   <!-- JavaScript Libraries -->
