@@ -80,7 +80,7 @@ var skilArr = [
     {
         "color": "#f0db4f,#adadad",
         "width": "62",
-        "skill": "Javascript",
+        "skill": "Js",
         "exp": "4",
         "content": "DOM manipulation, APIs, query methods, Event, Closures, Callbacks, Promises, XHR"
     }, 
