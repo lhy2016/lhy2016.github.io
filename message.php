@@ -1,7 +1,7 @@
 <?php 
-  require 'vendor/autoload.php';
-  use Mailgun\Mailgun;
   session_start();
+  require 'mailgunInit.php';
+  
   $errors = [];
   if (isset($_POST['contact'])) {
     $name = $_POST['name'];
@@ -35,16 +35,16 @@
         $bodyParagraphs = ["Personal Website Contact Form", "Name: {$name}", "Email: {$email}", "Message:", $message];
         $body = join("\n", $bodyParagraphs);
         
-        $mgClient = new Mailgun('950f2c8fca7b51f28a9e7d81389e14c8-c4d287b4-5b680726');
+        
         $domain = "sandbox4a288be1af0f4538bf9981d806061724.mailgun.org";
         # Make the call to the client.
-        $result = $mgClient->sendMessage($domain, array(
-          'from'	=> 'Haoyang <mailgun@sandbox4a288be1af0f4538bf9981d806061724.mailgun.org>',
+        $mgClient->messages()->send($domain,[
+          'from'	=> 'Haoyang <lhy920104@gmail.com>',
           'to'	=> 'Haoyang <lhy920104@gmail.com>',
           'subject' => $subject,
           'text'	=> $body
-        ));
-        var_dump($result);
+        ]); 
+          
         if (true) {
             setcookie($cookieName, time(), time() + (86400));
             $_SESSION["message"] = "Succeed. I will get back to you shortly.";
