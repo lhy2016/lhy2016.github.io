@@ -38,7 +38,7 @@
         $domain = "sandbox4a288be1af0f4538bf9981d806061724.mailgun.org";
         # Make the call to the client.
         $result = $mgClient->messages()->send($domain,[
-          'from'	=> 'Heroku Account <heroku@sandbox4a288be1af0f4538bf9981d806061724.mailgun.org>',
+          'from'	=> 'Heroku <postmaster@sandbox4a288be1af0f4538bf9981d806061724.mailgun.org>',
           'to'	=> 'Haoyang <lhy920104@gmail.com>',
           'subject' => "Personal Page Heroku: " . $subject,
           'text'	=> $body
