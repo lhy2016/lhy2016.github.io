@@ -29,22 +29,20 @@
     } else {
       $cookieName = "lastMailTS";
       $cur = time();
-      if (!isset($_COOKIE[$cookieName]) || $cur - $_COOKIE[$cookieName] > 20) {
+      if (!isset($_COOKIE[$cookieName]) || $cur - $_COOKIE[$cookieName] > 180) {
         $toEmail = 'lhy920104@gmail.com';
-      // $headers = ['From' => $email, 'Reply-To' => $toEmail, 'Content-type' => 'text/html; charset=iso-8859-1'];
         $bodyParagraphs = ["Personal Website Contact Form", "Name: {$name}", "Email: {$email}", "Message:", $message];
         $body = join("\n", $bodyParagraphs);
         
         
         $domain = "sandbox4a288be1af0f4538bf9981d806061724.mailgun.org";
         # Make the call to the client.
-        $mgClient->messages()->send($domain,[
-          'from'	=> 'Haoyang <lhy920104@gmail.com>',
+        $result = $mgClient->messages()->send($domain,[
+          'from'	=> 'Heroku <lhy@sandbox4a288be1af0f4538bf9981d806061724.mailgun.org>',
           'to'	=> 'Haoyang <lhy920104@gmail.com>',
           'subject' => $subject,
           'text'	=> $body
         ]); 
-          
         if (true) {
             setcookie($cookieName, time(), time() + (86400));
             $_SESSION["message"] = "Succeed. I will get back to you shortly.";
@@ -56,5 +54,5 @@
       }
     }
   }
-  // header("Location: index.php#contact");
+  header("Location: index.php#contact");
 ?>
