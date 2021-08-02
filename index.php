@@ -270,7 +270,7 @@
           </div>
 
           <div class="col-lg-6">
-            <form id="contact-form" action="message.php" method="POST" role="form" class="contactForm">
+            <form id="contact-form" onsubmit="return emailValidate(event);" method="POST" role="form" class="contactForm">
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group contact-block1">
