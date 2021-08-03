@@ -28,16 +28,16 @@
       echo json_encode(array());
     } else {
       try {
-        $toEmail = 'toEmail@gmail.com';
+        $toEmail = 'lhy920104@gmail.com';
         $bodyParagraphs = ["Personal Website Contact Form", "Name: {$name}", "Email: {$email}", "Message:", $message];
         $body = join("\n", $bodyParagraphs);
         
         
-        $domain = "apiKey";
+        $domain = "sandbox7260b4730848440bb2fca75aa2e0e6cc.mailgun.org";
         # Make the call to the client.
         $result = $mgClient->messages()->send($domain,[
-          'from'	=> 'Sender <sender@apiKey.com>',
-          'to'	=> 'Receiver <toEmail@gmail.com>',
+          'from'	=> 'Mailgun <app220657932@sandbox7260b4730848440bb2fca75aa2e0e6cc.mailgun.org>',
+          'to'	=> 'Haoyang <lhy920104@gmail.com>',
           'subject' => "Personal Page Heroku: " . $subject,
           'text'	=> $body
         ]); 
