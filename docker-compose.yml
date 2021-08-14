@@ -1,0 +1,32 @@
+version: '3'
+
+volumes: 
+  datafiles:
+
+services:
+   mysql:
+     image: mysql:8.0.0
+     container_name: mysql8
+     environment: 
+       - MYSQL_ROOT_PASSWORD=lhy_2016
+       - MYSQL_TCP_PORT=3306
+     volumes: 
+       - datafiles:/var/lib/mysql
+     restart: always
+   
+   website:
+     container_name: php73
+     build:
+       context: .
+       dockerfile: Dockerfile
+     environment:
+       - MYSQL_DBHOST=mysql
+       - MYSQL_DBPORT=3306
+       - MYSQL_DBUSER=root
+       - MYSQL_DBPASS=lhy_2016
+       #- MYSQL_DBNAME=
+     ports:
+       - 80:80
+       - 8083:443
+     depends_on:
+       - mysql
