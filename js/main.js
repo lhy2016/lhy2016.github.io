@@ -66,6 +66,9 @@ $(document).ready(function() {
     }
   });
 
+  // 修复portfolio因网速慢显示错误问题
+  
+
 
   // ========================================================================= //
   //  //SMOOTH SCROLL, 点击navbar的link 页面平滑滚动到相应的区
@@ -389,6 +392,15 @@ $(document).ready(function() {
     layoutMode: 'fitRows'
   });
 
+  $(".portfolio-container > .portfolio-thumbnail").each(function(index) {
+      var curTop = $(this).position().top;
+      var mgBot = parseFloat($(this).css("margin-bottom"), 10);
+      var height = parseFloat($(this).css("height"), 10);
+      if (curTop > 0 && curTop < height + mgBot) {
+        $(this).css("top", height + mgBot);
+      }
+  }); 
+
   $('#portfolio-flters li').on( 'click', function() {
     $("#portfolio-flters li").removeClass('filter-active');
     $(this).addClass('filter-active');
@@ -444,3 +456,4 @@ $(document).ready(function() {
   // // Call the functions
   // magnifPopup();
 });
+
