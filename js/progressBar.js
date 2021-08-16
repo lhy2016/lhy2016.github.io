@@ -50,6 +50,13 @@ var skilArr = [
         "content": "Basic CRUD, join, count, group by, order by, index, schema design"
     }, 
     {
+        "color": "#2496ed, #adadad",
+        "width": "80",
+        "skill": "Docker",
+        "exp": "2",
+        "content": "Dockerfile, Docker build, run, docker-compose, enter containers"
+    },
+    {
         "color": "#f16524,#adadad",
         "width": "66",
         "skill": "HTML",
