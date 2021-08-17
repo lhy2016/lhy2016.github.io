@@ -4,9 +4,9 @@ volumes:
   datafiles:
 
 services:
-   home-db:
+   mysql:
      image: mysql:8.0.0
-     container_name: mysql8
+     container_name: home-db
      environment: 
        - MYSQL_ROOT_PASSWORD=lhy_2016
        - MYSQL_TCP_PORT=3306
@@ -14,7 +14,7 @@ services:
        - datafiles:/var/lib/mysql
      restart: always
    home:
-     container_name: php73
+     container_name: lhy-home
      build:
        context: .
        dockerfile: Dockerfile
@@ -30,6 +30,6 @@ services:
      expose:
        - "80"
      depends_on:
-             - home-db
+             - mysql
      volumes:
        - ./:/var/www/html/
