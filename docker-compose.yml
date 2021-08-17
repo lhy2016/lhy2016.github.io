@@ -4,7 +4,7 @@ volumes:
   datafiles:
 
 services:
-   mysql:
+   home-db:
      image: mysql:8.0.0
      container_name: mysql8
      environment: 
@@ -13,8 +13,7 @@ services:
      volumes: 
        - datafiles:/var/lib/mysql
      restart: always
-   
-   website:
+   home:
      container_name: php73
      build:
        context: .
@@ -25,10 +24,12 @@ services:
        - MYSQL_DBUSER=root
        - MYSQL_DBPASS=lhy_2016
        #- MYSQL_DBNAME=
-     ports:
-       - 8080:80
-       - 8083:443
+      #ports:
+      # - 8080:80
+      # - 8083:443
+     expose:
+       - "80"
      depends_on:
-       - mysql
+             - home-db
      volumes:
        - ./:/var/www/html/
