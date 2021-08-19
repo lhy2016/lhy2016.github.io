@@ -33,10 +33,10 @@
         $body = join("\n", $bodyParagraphs);
         
         
-        $domain = "sandbox7260b4730848440bb2fca75aa2e0e6cc.mailgun.org";
+        $domain = "haoyangliu.com";
         # Make the call to the client.
         $result = $mgClient->messages()->send($domain,[
-          'from'	=> 'Mailgun <app220657932@sandbox7260b4730848440bb2fca75aa2e0e6cc.mailgun.org>',
+          'from'	=> 'lhyHome <mailgun@haoyangliu.com>',
           'to'	=> 'Haoyang <lhy920104@gmail.com>',
           'subject' => "Personal Page Heroku: " . $subject,
           'text'	=> $body
