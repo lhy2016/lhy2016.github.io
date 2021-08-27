@@ -1,7 +1,34 @@
 <?php 
   session_start(); 
 ?>
+<?php
 
+$db_host=getenv('MYSQL_DBHOST');
+$db_port=getenv('MYSQL_DBPORT');
+$db_user=getenv('MYSQL_DBUSER');
+$db_pass=getenv('MYSQL_DBPASS');
+$db_name="";
+
+if (strlen( $db_name ) === 0)
+  $conn = new mysqli("$db_host:$db_port", $db_user, $db_pass);
+else 
+  $conn = new mysqli("$db_host:$db_port", $db_user, $db_pass, $db_name);
+
+// Check connection
+if ($conn->connect_error) 
+	die("Connection failed: " . $conn->connect_error);
+ 
+if (!($result=mysqli_query($conn,'SHOW DATABASES')))
+    printf("Error: %s\n", mysqli_error($conn));
+
+echo "<h3>Databases</h3>";
+
+while($row = mysqli_fetch_row( $result ))
+    echo $row[0]."<br />";
+
+$result -> free_result();
+$conn->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
