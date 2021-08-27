@@ -1,25 +1,26 @@
 version: '3'
 
-volumes: 
-  datafiles:
-
 services:
-   mysql:
-     image: mysql:8.0.0
+   home-db:
+     image: mysql:5.7
      container_name: home-db
      environment: 
        - MYSQL_ROOT_PASSWORD=lhy_2016
-       - MYSQL_TCP_PORT=3306
+      #  - MYSQL_TCP_PORT=3306
+    #  ports:
+    #    - "32001:3306"
      volumes: 
-       - datafiles:/var/lib/mysql
+       - ./dbData:/var/lib/mysql
      restart: always
+   
+   
    home:
      container_name: lhy-home
      build:
        context: .
        dockerfile: Dockerfile
      environment:
-       - MYSQL_DBHOST=mysql
+       - MYSQL_DBHOST=home-db
        - MYSQL_DBPORT=3306
        - MYSQL_DBUSER=root
        - MYSQL_DBPASS=lhy_2016
@@ -30,6 +31,6 @@ services:
      expose:
        - "80"
      depends_on:
-             - mysql
+       - home-db
      volumes:
        - ./:/var/www/html/
