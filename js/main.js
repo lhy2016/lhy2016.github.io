@@ -391,16 +391,9 @@ $(document).ready(function() {
     itemSelector: '.portfolio-thumbnail',
     layoutMode: 'fitRows'
   });
-
-  $(".portfolio-container > .portfolio-thumbnail").each(function(index) {
-      var curTop = $(this).position().top;
-      var mgBot = parseFloat($(this).css("margin-bottom"), 10);
-      var height = parseFloat($(this).css("height"), 10);
-      if (curTop > 0 && curTop < height + mgBot) {
-        $(this).css("top", height + mgBot);
-      }
-  }); 
-
+  portfolioIsotope.imagesLoaded().progress( function() {
+    portfolioIsotope.isotope('layout');
+  });
   $('#portfolio-flters li').on( 'click', function() {
     $("#portfolio-flters li").removeClass('filter-active');
     $(this).addClass('filter-active');

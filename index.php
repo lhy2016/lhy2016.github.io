@@ -340,6 +340,7 @@
   <script src="lib/bgSwitcher/bgswitcher.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/magnific-popup/magnific-popup.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
