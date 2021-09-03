@@ -57,6 +57,13 @@ var skilArr = [
         "content": "Dockerfile, Docker build, run, docker-compose, enter containers"
     },
     {
+        "color": "#009639, #adadad",
+        "width": "140",
+        "skill": "Nginx",
+        "exp": "2",
+        "content": "Nginx as hosting server, proxy server, load balancer"
+    },
+    {
         "color": "#f16524,#adadad",
         "width": "66",
         "skill": "HTML",

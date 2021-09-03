@@ -330,12 +330,6 @@
       </div>
     </div>
   </div>
-  <?php 
-    if(isset($_SESSION["message"])) {
-      echo "<Script>alert('". $_SESSION["message"] ."');</Script>";
-      unset($_SESSION["message"]);
-    }
-  ?>
   <!-- End section footer -->
 
   <!-- JavaScript Libraries -->
