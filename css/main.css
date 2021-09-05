@@ -37,13 +37,15 @@ div.logo > a {
     font-family: 'Bilbo Swash Caps';
     font-weight: 500;
 }
-.message {
+.msg {
     color:#eeeeee;
-    position:absolute;
     font-family: 'Roboto', sans-serif;
-    padding:6px 10px;
+    padding:6px 13px;
     background-color: rgba(30,30,30,0.35);
     border-radius: 7px;
+    position: relative;
+    margin-bottom: 18px;
+    top:10px;
 }
 .arrow-right {
     position:absolute;
@@ -135,4 +137,14 @@ div.logo > a {
 }
 .owl-item .skills-descp {
     margin: 30px 6px;
+}
+.game #gameButton {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    border-radius:25px;
+    background-color: rgb(192, 192, 192);
+    border: 3px solid rgb(230, 213, 213);
 }

@@ -31,8 +31,7 @@
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="images/favicon.png">
-  <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+  
 </head>
 
 <body>
@@ -49,7 +48,7 @@
         </a>
       </div>
 
-      <div class="responsive"><i data-icon="m" class="ion-navicon-round"></i></div>
+      <div class="responsive"><ion-icon name="menu"></ion-icon></div>
 
       <ul class="nav-menu list-unstyled">
         <li><a href="#header" class="smoothScroll">Home</a></li>
@@ -69,21 +68,26 @@
   <div id="header" class="home">
 
     <div class="container" id="main-panel" style="position:relative">
+      <div class="msg-container" style="height:auto;
+                                        position:absolute;max-height:0px;overflow:hidden;
+                                        display: flex; flex-direction: column;
+                                        align-items: flex-start;
+                                        bottom:calc(50% + 65px);width:100%;overflow:visible"></div>
       <div class="header-content">
-        <div style="height:12%"></div>
-        <h1 id="typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;">
+        <!-- <div style="height:12%"></div> -->
+        <h1 id="typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;padding-left:13px;">
           <button class="moreAboutMe">About Me </button>
           <span class="typed"></span>
         </h1>
         <!--        <p class="liu">designer, developer, photographer</p>-->
         <ul class="list-unstyled list-social">
-          <li><a href="https://www.facebook.com/profile.php?id=100004179810966" target="_blank">
-              <i class="ion-social-facebook"></i></a></li>
+          <!-- <li><a href="https://www.facebook.com/profile.php?id=100004179810966" target="_blank">
+              <i class="ion-social-facebook"></i></a></li> -->
           <li><a href="https://github.com/lhy2016" target="_blank">
-              <i class="ion-social-github"></i></a></li>
+              <ion-icon name="logo-github"></ion-icon></a></li>
           <li><a href="https://www.linkedin.com/in/haoyang-liu-39156a164/" target="_blank">
-              <i class="ion-social-linkedin"></i></a></li>
-          <li><a href="#"><i class="ion-ios-email"></i></a></li>
+          <ion-icon name="logo-linkedin"></ion-icon></a></li>
+          <li><a id="social-mail-link"><ion-icon name="mail"></ion-icon></a></li>
         </ul>
       </div>
       <div id="heart-tag">
@@ -331,7 +335,11 @@
     </div>
   </div>
   <!-- End section footer -->
-
+  <div class="game">
+    <div id="gameButton">
+      <i class="ion-logo-game-controller-b"></i>
+    </div>
+  </div>
   <!-- JavaScript Libraries -->
   <script src="lib/jquery/jquery.min.js"></script>
   <script src="lib/jquery/jquery-migrate.min.js"></script>
@@ -349,6 +357,8 @@
   <script src="js/main.js"></script>
   <script src="js/progressBar.js"></script>
   <script src="js/validate.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

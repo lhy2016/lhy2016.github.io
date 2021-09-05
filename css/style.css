@@ -276,15 +276,7 @@ nav ul li a {
   font-weight: 500;
 }
 
-.header-content .list-social li {
-  float: left;
-  margin-right: 20px;
-}
 
-.header-content .list-social li i {
-  color: #fff;
-  font-size: 20px;
-}
 
 /*-----------------------------------------------------------------------------------*/
 /*  Aout-us
@@ -695,12 +687,30 @@ nav ul li a {
     border-left: 5px solid rgba(30,30,30,0.35);
     right: -5px;
 }
-.message, .typed, .typed-cursor {
+.moreAboutMe {
+  font-size: 13px;
+  font-weight: normal;
+  position: relative;
+  padding:10px 15px;
+  background-color:transparent;
+  border:solid 2px white;
+  color:white;
+  display:none;
+  top:-18px;
+  left: -13px;
+}
+.moreAboutMe:focus {
+  outline:none;
+}
+.moreAboutMe:hover {
+  cursor:pointer;
+}
+.msg, .typed, .typed-cursor {
   font-size:20px;
 }
 
 @media screen and (min-width: 380px) {
-  .message, .typed, .typed-cursor {
+  .msg, .typed, .typed-cursor {
     font-size:30px;
   }
   .arrow-right {
@@ -711,9 +721,12 @@ nav ul li a {
     border-left: 7.5px solid rgba(30,30,30,0.35);
     right: -7.5px;
   }
+  .moreAboutMe {
+    font-size: 20px;
+  }
 }
 @media screen and (min-width: 600px) {
-  .message, .typed, .typed-cursor {
+  .msg, .typed, .typed-cursor {
     font-size:40px;
   }
   .arrow-right {
@@ -724,24 +737,11 @@ nav ul li a {
     border-left: 10px solid rgba(30,30,30,0.35);
     right: -10px;
   }
+  .moreAboutMe {
+    font-size: 25px;
+  }
 }
-.moreAboutMe {
-  font-size: 25px;
-  font-weight: normal;
-  position: relative;
-  padding:10px 15px;
-  background-color:transparent;
-  border:solid 2px white;
-  color:white;
-  display:none;
-  top:-18px;
-}
-.moreAboutMe:focus {
-  outline:none;
-}
-.moreAboutMe:hover {
-  cursor:pointer;
-}
+
 .header-content .list-social {
   opacity:0;
 }
@@ -836,18 +836,27 @@ nav ul li a {
   color:white;
   font-family:Roboto, sans-serif;
 }
-.header-content .list-social li i.ion-social-facebook:hover {
-  color:#3b5998;
+.header-content .list-social li {
+  float: left;
+  margin-right: 20px;
 }
 
-.header-content .list-social li i.ion-social-github:hover {
-  color:#6e5494;
+.header-content .list-social li ion-icon {
+  color: #fff;
+  font-size: 23px;
 }
 
-.header-content .list-social li i.ion-social-linkedin:hover {
+.header-content .list-social li ion-icon[name="logo-github"]:hover {
+  color:#1a1e22;
+}
+
+.header-content .list-social li ion-icon[name="logo-linkedin"]:hover {
   color:#0077b5;
 }
-
+.header-content .list-social li ion-icon[name="mail"]:hover {
+  color:#d74239;
+  cursor:pointer;
+}
 .bar-container {
   margin: auto;
   width: 89%;

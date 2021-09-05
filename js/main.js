@@ -20,15 +20,15 @@ $(document).ready(function() {
   var bgswitcher;
   setTimeout(function(){
     bgswitcher = $("#header").bgswitcher({
-    images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/monica.jpg", "./images/tahoe.jpg"],
-    loop: true,
-    interval: 5500,
-    instruction: ['',
-                  'Photographed at Laguna Beach, CA',
-                  'Took a photo of my grilfriend who\'s taking photos of a seagull, at gorgeous Santa Monica Beach!',
-                  'Photographed at my favourite Lake Tahoe',
-                  ]
-  }, 5500);
+      images: ["./images/home-bg.jpg", "./images/laguna.jpg", "./images/monica.jpg", "./images/tahoe.jpg"],
+      loop: true,
+      interval: 5500,
+      instruction: ['',
+                    'Photographed at Laguna Beach, CA',
+                    'Took a photo of my grilfriend who\'s taking photos of a seagull, at gorgeous Santa Monica Beach!',
+                    'Photographed at my favourite Lake Tahoe',
+                    ]
+    }, 5500);
   });
 
   // 背景图切换 左右按钮
@@ -45,6 +45,15 @@ $(document).ready(function() {
         scrollTop: ($('#about').first().offset().top)
       },500);
   });
+
+  $("#social-mail-link").click(function(e) {
+    e.preventDefault();
+    var mail = $("#contact");
+    $('html, body').animate({
+      scrollTop: mail.offset().top - 80
+    }, 500);
+  });
+  
 
   // Resume部分 按钮
   var doubleDown = "<i style=\"margin-left:5px\" class=\"fas fa-angle-double-down\" aria-hidden=\"true\"></i>";
@@ -66,7 +75,6 @@ $(document).ready(function() {
     }
   });
 
-  // 修复portfolio因网速慢显示错误问题
   
 
 
@@ -90,10 +98,9 @@ $(document).ready(function() {
 
     $(this).addClass('active');
 
-    var target = this.hash,
-        menu = target;
-
+    var target = this.hash;
     target = $(target);
+
     $('html, body').stop().animate({
       'scrollTop': target.offset().top - 80
     }, 500, 'swing', function() {
@@ -156,9 +163,9 @@ $(document).ready(function() {
     // $('.nav-menu').slideToggle();
     $('.nav-menu').toggleClass("show");
     if ($('.nav-menu').hasClass("show")) {
-      $('.responsive').html('<i data-icon-"m" class="ionicons ion-close-round"></i>');
+      $('.responsive').html('<ion-icon name="close"></ion-icon>');
     } else {
-      $('.responsive').html('<i data-icon="m" class="ion-navicon-round"></i>');
+      $('.responsive').html('<ion-icon name="menu"></ion-icon>');
     }
   });
 
@@ -168,30 +175,35 @@ $(document).ready(function() {
 
   var typedContent = $(".typed");
   var headerContent = $(".header-content");
+  var msgContainer = $(".msg-container");
   var index = 0;
   $(function() {
     typedContent.typed({
       strings: ["<span id='greeting'>Hi</span> there,", 
                 "I'm <span id='myName'>Haoyang Liu</span>.",  
                 "I'm a <span id='role'>Software Engineer</span>."],
-      typeSpeed: 25,
+      typeSpeed: 27,
       startDelay: 200,
       loop: false,
       onStringTyped: function() {
-        var currentTop = $("#typeArea").position().top-15;
-          headerContent.before(
-            "<h1 class = 'message' style=\"top:"+currentTop+"px;\">" + 
+        msgContainer.append("<h1 class = 'msg'>" +
               "<b>" + typedContent.html()+"</b>"+
               "<span class='arrow-right'></span>" + 
             "</h1>");
         typedContent.empty();
-        $("#main-panel > h1").each(function(){
-            var height = $(this).outerHeight();
-            var newTop =  $(this).position().top - height - 13;
-            $(this).animate({
-               top: newTop,
-            });
-        });
+     
+        var typedMsgs = msgContainer.children();
+        var lastMsg = $(typedMsgs[typedMsgs.length - 1]);
+        var mxh = ((lastMsg.outerHeight() + 18) * (index + 1)) + "px";
+
+        msgContainer.animate({
+          maxHeight: mxh,
+        } ,600);
+
+        lastMsg.animate({
+          top: "0px",
+        }, 600);
+
         if (index == 0) {
           $("#greeting").css("background","linear-gradient(to right, #c46135, #ee9c10)");
           $("#greeting").css("-webkit-background-clip","text");
