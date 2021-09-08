@@ -262,7 +262,7 @@ nav ul li a {
 .header-content h1 {
   font-size: 40px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 35px;
   color: #fff;
 }
 
@@ -679,55 +679,71 @@ nav ul li a {
   color:rgba(255,255,255,0.35);
   cursor: pointer;
 }
-.arrow-right {
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid rgba(30,30,30,0.35);
-    right: -5px;
-}
+
 .moreAboutMe {
   font-size: 13px;
-  font-weight: normal;
   position: relative;
-  padding:10px 15px;
+  /* top:-18px; */
+  left: -13px;
+  padding:8px 13px;
   background-color:transparent;
   border:solid 2px white;
   color:white;
   display:none;
-  top:-18px;
-  left: -13px;
+  border-radius: 5px;
 }
+
 .moreAboutMe:focus {
   outline:none;
 }
 .moreAboutMe:hover {
   cursor:pointer;
 }
-.msg, .typed, .typed-cursor {
-  font-size:20px;
-}
 
-@media screen and (min-width: 380px) {
+.msg, .typed, .typed-cursor {
+  font-size:6.9vw;
+}
+.msg {
+  margin-bottom: 3.7vw;
+}
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-top: 1.725vw solid transparent;
+  border-bottom: 1.725vw solid transparent;
+  border-left: 1.725vw solid rgba(30,30,30,0.35);
+  right: -1.725vw;
+}
+@media screen and (min-width: 430px) {
   .msg, .typed, .typed-cursor {
-    font-size:30px;
+    font-size:32px;
+  }
+  .msg {
+    margin-bottom: 15px;
   }
   .arrow-right {
     width: 0;
     height: 0;
-    border-top: 7.5px solid transparent;
-    border-bottom: 7.5px solid transparent;
-    border-left: 7.5px solid rgba(30,30,30,0.35);
-    right: -7.5px;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid rgba(30,30,30,0.35);
+    right: -8px;
   }
   .moreAboutMe {
     font-size: 20px;
+  }
+  #about-me-double-down {
+    font-size: 13px;
+    position: relative;
+    bottom: 2px;
   }
 }
 @media screen and (min-width: 600px) {
   .msg, .typed, .typed-cursor {
     font-size:40px;
+  }
+  .msg {
+    margin-bottom: 18px;
   }
   .arrow-right {
     width: 0;
@@ -738,10 +754,14 @@ nav ul li a {
     right: -10px;
   }
   .moreAboutMe {
-    font-size: 25px;
+    font-size: 24px;
+  }
+  #about-me-double-down {
+    font-size: 16px;
+    position: relative;
+    bottom: 2px;
   }
 }
-
 .header-content .list-social {
   opacity:0;
 }

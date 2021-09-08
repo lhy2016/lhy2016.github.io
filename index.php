@@ -76,7 +76,9 @@
       <div class="header-content">
         <!-- <div style="height:12%"></div> -->
         <h1 id="typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;padding-left:13px;">
-          <button class="moreAboutMe">About Me </button>
+          <button class="moreAboutMe">About Me 
+            <i id="about-me-double-down" class="fas fa-angle-double-down"></i>
+          </button>
           <span class="typed"></span>
         </h1>
         <!--        <p class="liu">designer, developer, photographer</p>-->

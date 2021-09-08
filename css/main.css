@@ -44,8 +44,13 @@ div.logo > a {
     background-color: rgba(30,30,30,0.35);
     border-radius: 7px;
     position: relative;
-    margin-bottom: 18px;
-    top:10px;
+    
+}
+.colored-msg {
+    background: linear-gradient(to right, #c46135, #ee9c10);
+    -webkit-background-clip: text;
+    background-clip: test;
+    -webkit-text-fill-color: transparent;
 }
 .arrow-right {
     position:absolute;

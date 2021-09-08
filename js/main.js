@@ -2,20 +2,7 @@
 $(document).ready(function() {
 
   'use strict';
-  // 改变窗口大小时
-  $( window ).resize(function() {
-    
-    // 调整三个打字message的位置
-      var set = $(".header-content").prevAll("h1");
-      var length = set.length;
-      var topBase = $("#typeArea").position().top - 15;
-      for (var i = 0;i < length;i++) {
-        var curHeight = set.eq(i).outerHeight();
-        topBase -= (curHeight + 13);
-        set.eq(i).css("top",topBase);
-      }
 
-  });
   // Home背景图Switcher
   var bgswitcher;
   setTimeout(function(){
@@ -174,50 +161,48 @@ $(document).ready(function() {
   // ========================================================================= //
 
   var typedContent = $(".typed");
-  var headerContent = $(".header-content");
   var msgContainer = $(".msg-container");
   var index = 0;
+  var inputStrings = ["<span>Hi</span> there,", 
+  "I'm <span>Haoyang Liu</span>.",  
+  "I'm a <span>Software Engineer</span>."];
   $(function() {
     typedContent.typed({
-      strings: ["<span id='greeting'>Hi</span> there,", 
-                "I'm <span id='myName'>Haoyang Liu</span>.",  
-                "I'm a <span id='role'>Software Engineer</span>."],
+      strings: inputStrings,
       typeSpeed: 27,
       startDelay: 200,
       loop: false,
       onStringTyped: function() {
+        // 着色
+        if (typedContent.html().includes("</span>")) {
+          typedContent.find("span").each(function() {
+            $(this).addClass("colored-msg");
+          })
+        }
+        // 插入container
         msgContainer.append("<h1 class = 'msg'>" +
               "<b>" + typedContent.html()+"</b>"+
               "<span class='arrow-right'></span>" + 
             "</h1>");
+        //清空打字条
         typedContent.empty();
-     
+        
+        //动画，container上边界扩充
         var typedMsgs = msgContainer.children();
         var lastMsg = $(typedMsgs[typedMsgs.length - 1]);
-        var mxh = ((lastMsg.outerHeight() + 18) * (index + 1)) + "px";
-
+        var mxh = ((lastMsg.outerHeight() + parseInt(lastMsg.css("margin-bottom")) )  * (index + 1)) + "px";
         msgContainer.animate({
           maxHeight: mxh,
         } ,600);
 
+        //动画，每个msg往上滑
         lastMsg.animate({
           top: "0px",
         }, 600);
-
-        if (index == 0) {
-          $("#greeting").css("background","linear-gradient(to right, #c46135, #ee9c10)");
-          $("#greeting").css("-webkit-background-clip","text");
-          $("#greeting").css("-webkit-text-fill-color","transparent");
-        }
-        else if (index == 1) {
-          $("#myName").css("background","linear-gradient(to right, #c46135, #ee9c10)");
-          $("#myName").css("-webkit-background-clip","text");
-          $("#myName").css("-webkit-text-fill-color","transparent");
-        }
-        else if (index == 2) {
-          $("#role").css("background","linear-gradient(to right, #c46135, #ee9c10)");
-          $("#role").css("-webkit-background-clip","text");
-          $("#role").css("-webkit-text-fill-color","transparent");
+    
+       //最后一条msg后的行为
+        if (index == inputStrings.length - 1) {
+         
           var currentHeight = $("#typeArea").outerHeight();
           $(".typed-cursor").html("");
           $("#typeArea").css("height", currentHeight);
@@ -233,6 +218,14 @@ $(document).ready(function() {
               .addClass('fade-in')
               .one(null, function() {
               });
+          setInterval(() => {
+            $("#about-me-double-down").animate({
+              opacity: 0.15
+            },500);
+            $("#about-me-double-down").animate({
+              opacity:1,
+            },500);
+          }, 1200);
           arrowBack.addClass('block').outerWidth();
           arrowBack.addClass('fade-in').one(null, function() {});
           arrowBack.css("display","inline");
@@ -250,6 +243,23 @@ $(document).ready(function() {
       backSpeed:0,
       wantBackSpace:false
     });
+  });
+  // 改变窗口大小时
+  $( window ).resize(function() {
+    // 调整message框的高度
+    var msgs = msgContainer.children();
+    var length = msgContainer.children().length;
+    var msgHeight = $(msgs[length - 1]).outerHeight();
+    var msgMarginBtm = parseInt($(msgs[length - 1]).css("margin-bottom") );
+    msgContainer.css("maxHeight", ((msgHeight + msgMarginBtm) * length) + "px");
+      // var length = set.length;
+      // var topBase = $("#typeArea").position().top - 15;
+      // for (var i = 0;i < length;i++) {
+      //   var curHeight = set.eq(i).outerHeight();
+      //   topBase -= (curHeight + 13);
+      //   set.eq(i).css("top",topBase);
+      // }
+
   });
   // ========================================================================= //
   //  Owl Carousel Services
