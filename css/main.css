@@ -37,6 +37,18 @@ div.logo > a {
     font-family: 'Bilbo Swash Caps';
     font-weight: 500;
 }
+.msg-container {
+    height:auto;
+    position:absolute;
+    max-height:0px;
+    overflow:hidden;
+    display: flex; 
+    flex-direction: column;
+    align-items: flex-start;
+    bottom: calc(50% + 65px);
+    width: 100%;
+    overflow: visible;
+}
 .msg {
     color:#eeeeee;
     font-family: 'Roboto', sans-serif;
@@ -143,7 +155,10 @@ div.logo > a {
 .owl-item .skills-descp {
     margin: 30px 6px;
 }
-.game #gameButton {
+#game {
+    position: fixed;
+}
+#game #gameButton {
     width: 50px;
     height: 50px;
     position: fixed;
@@ -152,4 +167,282 @@ div.logo > a {
     border-radius:25px;
     background-color: rgb(192, 192, 192);
     border: 3px solid rgb(230, 213, 213);
+    -webkit-box-shadow: -3px 1px 16px 1px rgba(68,68,68,0.89); 
+    box-shadow: -3px 1px 16px 1px rgba(68,68,68,0.89);
+    cursor: pointer;
+    opacity: 0.4;
+}
+#game #gameButton:hover {
+    opacity: 1;
+}
+
+#game #gameButton:not(.active):hover::after{
+    content: 'Wanna play games with me?';
+    display: inline-block;
+    padding: 12px 19px;
+    background-color: #3b3b3b;
+    box-sizing: content-box;
+    transform: translate(-100%, -80%);
+    border-radius: 8px;
+    color: white;
+    animation-name: gamePrompt;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid white;
+}
+ 
+@keyframes gamePrompt {
+    from {min-width: 0px;max-width: 0px; opacity: 0}
+    to {min-width: 152px;max-width: 1000px; opacity: 1}
+}
+#gameButton > #gameIcon {
+    font-size: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #656565;
+}
+#game > #games {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap:wrap-reverse;
+    padding: 20px;
+    background-image: linear-gradient(to bottom right, #9abdda, #e2c4ac);
+    border-radius: 10px;
+}
+.gameBrowse {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+}
+.gameBrowse .game-pic {
+    width: 12em;
+    height: 9em;
+    margin-bottom: 12px;
+}
+#ttt .game-pic {
+    background: url("../images/tictactoe.jpg");
+    background-position: center center;
+    background-size: cover;   
+}
+.game-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(28, 186, 207);
+    padding: 15px;
+    z-index: 999;
+}
+.game-panel > .game-close {
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    right: 0px;
+    top: 0px;
+    transform: translate(50%, -50%);
+}
+.game-panel > .game-close > ion-icon {
+    border-radius: 14px;
+    height: 100%;
+    width: 100%;
+    color: red;
+    background-color: white;
+}
+#ttt-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#ttt-title-area {
+    width: 100%;
+    height: 70px;
+    margin: 17px 0px;
+}
+#ttt-yn-container {
+    background-image: linear-gradient(to right, rgba(219, 219, 219, 0.4) , rgba(199, 230, 90, 0.4));
+    padding: 10px 15px;
+    color: white;
+    border-radius: 4px;
+}
+#ttt-yn-container > span {
+    cursor: pointer;
+}
+#ttt-game-title {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: none;
+}
+.ttt-player {
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ttt-avatar {
+    height: 37px;
+    width: 37px;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center center;
+    margin: 8px;
+}
+.ttt-avatar#ttt-cavatar {
+    background-image: url("../images/me.jpg");
+}
+.ttt-avatar#ttt-pavatar {
+    background-image: url("../images/games/player.png");
+}
+#ttt-taunt {
+    padding: 7px 12px;
+    font-size: 14px;
+    background-color: rgba(160, 160, 160, 0.884);
+    color: white;
+    border-radius: 5px;
+    display: none;
+    position: relative;
+}
+#ttt-taunt::after {
+    content: '';
+    width: 0px;
+    height: 0px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid rgba(160, 160, 160, 0.884);
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform:translateY(-50%);
+}
+.ttt-score {
+    color: white;
+}
+#ttt-option {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    visibility:hidden;
+}
+#rt-btn {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    padding: 5px 7px;
+    background-image: linear-gradient(to right, rgba(219, 219, 219, 0.4) , rgba(199, 230, 90, 0.4));
+    border-radius: 4px;
+}
+#ttt-board {
+    width: 20vw;
+    height: 20vw;
+    min-width: 250px;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+#ttt-board > span {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+}
+#ttt-board > span.middle {
+    position: relative;
+}
+#ttt-board > span.middle::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 5px;
+    background-color: rgb(59, 59, 59);
+    transform:translateY(-50%);
+    border-radius: 3px;
+}
+#ttt-board > span.middle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 5px;
+    background-color: rgb(59, 59, 59);
+    transform:translateY(50%);
+    border-radius:3px;
+}
+#ttt-board > span > div {
+    flex: 1 1 auto;
+    position: relative;
+}
+#ttt-board > span > div.middle {
+    position: relative;
+}
+#ttt-board > span > div.middle::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    left: 0;
+    width: 5px;
+    background-color: rgb(59, 59, 59);
+    transform:translateX(-50%);
+    border-radius: 3px;
+}
+#ttt-board > span > div.middle::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    right: 0;
+    width: 5px;
+    background-color: rgb(59, 59, 59);
+    transform:translateX(50%);
+    border-radius:3px;
+}
+#ttt-board > span > div > div {
+    width: 70%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#ttt-board > span > div > div.X {
+    background-image: url("../images/games/X.png");
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    background-size: cover;
+}
+#ttt-board > span > div > div.O {
+    background-image: url("../images/games/O.png");
+    background-position: center center;
+    background-repeat: no-repeat no-repeat;
+    background-size: cover;
 }

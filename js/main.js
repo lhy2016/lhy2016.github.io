@@ -159,7 +159,15 @@ $(document).ready(function() {
   // ========================================================================= //
   //  Typed Js
   // ========================================================================= //
-
+  var cursorBlink = setInterval(() => {
+    $(".typed-cursor").animate({
+      opacity: 0.15
+    },150);
+    $(".typed-cursor").animate({
+      opacity: 1
+    },150);
+  }, 300);
+  
   var typedContent = $(".typed");
   var msgContainer = $(".msg-container");
   var index = 0;
@@ -169,8 +177,8 @@ $(document).ready(function() {
   $(function() {
     typedContent.typed({
       strings: inputStrings,
-      typeSpeed: 27,
-      startDelay: 200,
+      typeSpeed: 40,
+      startDelay: 350,
       loop: false,
       onStringTyped: function() {
         // 着色
@@ -202,7 +210,7 @@ $(document).ready(function() {
     
        //最后一条msg后的行为
         if (index == inputStrings.length - 1) {
-         
+          clearInterval(cursorBlink);
           var currentHeight = $("#typeArea").outerHeight();
           $(".typed-cursor").html("");
           $("#typeArea").css("height", currentHeight);
@@ -220,10 +228,12 @@ $(document).ready(function() {
               });
           setInterval(() => {
             $("#about-me-double-down").animate({
-              opacity: 0.15
+              opacity: 0.2,
+              top: "0px",
             },500);
             $("#about-me-double-down").animate({
-              opacity:1,
+              opacity: 1,
+              top:"-3px"
             },500);
           }, 1200);
           arrowBack.addClass('block').outerWidth();

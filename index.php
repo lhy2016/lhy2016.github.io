@@ -68,11 +68,7 @@
   <div id="header" class="home">
 
     <div class="container" id="main-panel" style="position:relative">
-      <div class="msg-container" style="height:auto;
-                                        position:absolute;max-height:0px;overflow:hidden;
-                                        display: flex; flex-direction: column;
-                                        align-items: flex-start;
-                                        bottom:calc(50% + 65px);width:100%;overflow:visible"></div>
+      <div class="msg-container"></div>
       <div class="header-content">
         <!-- <div style="height:12%"></div> -->
         <h1 id="typeArea" style="color:#dddddd;font-family: 'Lato', sans-serif;padding-left:13px;">
@@ -83,8 +79,6 @@
         </h1>
         <!--        <p class="liu">designer, developer, photographer</p>-->
         <ul class="list-unstyled list-social">
-          <!-- <li><a href="https://www.facebook.com/profile.php?id=100004179810966" target="_blank">
-              <i class="ion-social-facebook"></i></a></li> -->
           <li><a href="https://github.com/lhy2016" target="_blank">
               <ion-icon name="logo-github"></ion-icon></a></li>
           <li><a href="https://www.linkedin.com/in/haoyang-liu-39156a164/" target="_blank">
@@ -301,7 +295,7 @@
 
                 <div class="col-lg-12">
                   <div class="form-group">
-                    <textarea class="form-control" name="message" rows="12" placeholder="Message"></textarea>
+                    <textarea class="form-control" name="message" rows="20" cols="50" placeholder="Message" style="height:80px;"></textarea>
                     <div class="validation"></div>
                   </div>
                 </div>
@@ -326,20 +320,18 @@
       <div class="socials-media text-center">
 
         <ul class="list-unstyled">
-          <li><a href="https://www.facebook.com/profile.php?id=100004179810966">
-              <i class="ion-social-facebook"></i></a></li>
-          <li><a href="#"><i class="ion-social-github"></i></a></li>
-          <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
-          <li><a href="#"><i class="ion-ios-email"></i></a></li>
+          <li><a href="https://github.com/lhy2016"><ion-icon name="logo-github"></ion-icon></a></li>
+          <li><a href="https://www.linkedin.com/in/haoyang-liu-39156a164/"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+          <li><a><ion-icon name="mail"></ion-icon></a></li>
         </ul>
 
       </div>
     </div>
   </div>
   <!-- End section footer -->
-  <div class="game">
+  <div id="game">
     <div id="gameButton">
-      <i class="ion-logo-game-controller-b"></i>
+      <ion-icon id="gameIcon" name="logo-game-controller-b"></ion-icon>
     </div>
   </div>
   <!-- JavaScript Libraries -->
@@ -359,6 +351,7 @@
   <script src="js/main.js"></script>
   <script src="js/progressBar.js"></script>
   <script src="js/validate.js"></script>
+  <script src="js/game.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 </body>

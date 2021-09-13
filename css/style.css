@@ -230,10 +230,6 @@ nav ul li a {
   /*background-image:  */
   background:
   url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQYV2NkYGBgyMzM/D99+nRGEA0mYBwQzUhQBQCTUxx5+Y70qgAAAABJRU5ErkJggg==),
- /* linear-gradient(
-          rgba(95, 95, 95, 0.45),
-          rgba(16, 75, 148, 0.45)
-  ),*/
   url("../images/home-bg.jpg");
   background-repeat: repeat, repeat;
   background-attachment: scroll;
@@ -424,7 +420,7 @@ nav ul li a {
 }
 
 #portfolio .portfolio-list .nav li:hover, #portfolio .portfolio-list .nav li.filter-active  {
-  color: #b8a07e;
+  color: #ee7e3d;
   -moz-transition: all 0.5s ease-in-out 0s;
   -ms-transition: all 0.5s ease-in-out 0s;
   -o-transition: all 0.5s ease-in-out 0s;
@@ -865,16 +861,15 @@ nav ul li a {
   color: #fff;
   font-size: 23px;
 }
-
-.header-content .list-social li ion-icon[name="logo-github"]:hover {
-  color:#1a1e22;
+ ion-icon[name="logo-github"]:hover {
+  color:#1a1e22 !important;
 }
 
-.header-content .list-social li ion-icon[name="logo-linkedin"]:hover {
-  color:#0077b5;
+ ion-icon[name="logo-linkedin"]:hover {
+  color:#0077b5 !important;
 }
-.header-content .list-social li ion-icon[name="mail"]:hover {
-  color:#d74239;
+ ion-icon[name="mail"]:hover {
+  color:#d74239 !important;
   cursor:pointer;
 }
 .bar-container {
