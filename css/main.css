@@ -170,6 +170,7 @@ div.logo > a {
     -webkit-box-shadow: -3px 1px 16px 1px rgba(68,68,68,0.89); 
     box-shadow: -3px 1px 16px 1px rgba(68,68,68,0.89);
     cursor: pointer;
+    display: none;
     opacity: 0.4;
 }
 #game #gameButton:hover {

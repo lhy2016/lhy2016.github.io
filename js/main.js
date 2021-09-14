@@ -247,6 +247,8 @@ $(document).ready(function() {
           social.addClass('block').outerWidth();
           social.addClass('fade-in').one(null, function() {});
           social.css("opacity","1");
+
+          $("#gameButton").css("display", "block");
         }
         index++;
       },
