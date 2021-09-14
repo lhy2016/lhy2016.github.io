@@ -16,11 +16,20 @@ $("#gameButton").click(function() {
                                  </div>");
                 var gameLoader = gameContent[gameId];
                 gameLoader();
+                $("#games").hide();
             }
         });
+    } else {
+        $("#games").show();
     }
 });
-
+$(document).click(function(event) { 
+    var $target = $(event.target); 
+    if(!$target.closest('#games').length && !$target.closest('#gameButton').length
+       && $('#games').is(":visible")) {
+      $('#games').hide();
+    }        
+});
 function loadTtt() {
     var tttPlayerTurn = true;
     var playerChess = "X"
@@ -98,13 +107,9 @@ function loadTtt() {
         var index = $("#ttt-board > span > div").index($(this));
         var x = Math.floor(index / tttBoard[0].length);
         var y = index % tttBoard[0].length;
-        console.log([x,y]);
         if (tttBoard[x][y] === "" && tttPlayerTurn && !gameEnd) {
-            console.log("here");
             tttBoard[x][y] = "p";
-            console.log(tttBoard);
-            history.push("p" + JSON.stringify([x,y]));
-            console.log(tttBoard);
+            history.push({"turn": "p", "where": JSON.stringify([x,y])});
             repaintBoard();
             gameEnd = isGameEnd([x,y]);
             if (!gameEnd) {
@@ -152,7 +157,7 @@ function loadTtt() {
             }
         }
         if (rowFinished) {
-            winner = history[history.length - 1].startsWith("p") ? "p" : "c";
+            winner = history[history.length - 1]["turn"];
             return true;
         }
         
@@ -164,7 +169,7 @@ function loadTtt() {
             }
         }
         if (colFinished) {
-            winner = history[history.length - 1].startsWith("p") ? "p" : "c";
+            winner = history[history.length - 1]["turn"];
             return true;
         }
         
@@ -183,7 +188,7 @@ function loadTtt() {
                 }
             }
             if (fwdSlash) {
-                winner = history[history.length - 1].startsWith("p") ? "p" : "c";
+                winner = history[history.length - 1]["turn"];
                 return true;
             }
         }
@@ -196,7 +201,7 @@ function loadTtt() {
                 }
             }
             if (bwdSlash) { 
-                winner = history[history.length - 1].startsWith("p") ? "p" : "c";
+                winner = history[history.length - 1]["turn"];
                 return true;
             }
         }
@@ -302,16 +307,14 @@ function loadTtt() {
         var corners = ['[0,0]','[0,2]','[2,0]','[2,2]'];
         //尽可能选一个空角
         
-        var chessCount = 0;
-        for (var i = 0; i < tttBoard.length;i++) {
-            for (var j = 0; j < tttBoard[i].length;j++) {
-                if (tttBoard[i][j] !== "") {
-                    chessCount++;
-                }
-            }
-        }
+        var chessCount = history.length;
+        //电脑后手，第二个子儿必走中间
         if (chessCount == 1 && tttBoard[1][1] === "") {
             cell = [1,1];
+        //电脑后手，第四个子儿
+        } else if (chessCount == 3 && ((tttBoard[0][0] === "p" && tttBoard[2][2] === "p") || 
+                                        (tttBoard[0][2] === "p" && tttBoard[2][0] === "p")) ) {
+            cell = [1,0];
         } else {
         
             if (corners.includes( JSON.stringify(empties[0][0]))) {
@@ -324,7 +327,7 @@ function loadTtt() {
             }
         }
         tttBoard[cell[0]][cell[1]] = "c";
-        history.push("c" + JSON.stringify(cell));
+        history.push({"turn": "c", "where": JSON.stringify(cell)});
         repaintBoard();
         gameEnd = isGameEnd(cell);
         if (!gameEnd) {
