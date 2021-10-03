@@ -202,7 +202,7 @@
 
           <div class="portfolio-container">
 
-            <div class="col-lg-4 col-md-6 portfolio-thumbnail react" style="display:none;">
+            <div class="col-lg-4 col-md-6 portfolio-thumbnail all react">
               <a class="popup-img" href="images/comingSoon.jpg" target="_blank">
                 <img src="images/comingSoon.jpg" alt="img">
               </a>
