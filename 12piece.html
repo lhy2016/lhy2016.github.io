@@ -1,0 +1,454 @@
+<html>
+    <head>
+        <style>
+            #container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                align-items: center;
+                min-width:1330px;
+            }
+            #container > div {
+                margin-left: 30px;
+            }
+            #puzzle {
+                height: 560px;
+                width: 560px;
+                border: 10px solid black;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+            #puzzle > #placeHolder {
+                position: absolute;
+            }
+            #pieces {
+                width: 700px;
+                min-height: 800px;
+                border: 2px dashed rgb(221, 128, 21);
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                align-items: center;
+            }
+            #pieces > div, #puzzle > div {
+                color: #353535;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                user-select: none;
+                border-radius: 5px;
+            }
+            #pieces > div.selected {
+                border: 3px solid rgb(75, 75, 75);
+            }
+            button {
+                font-size: 20px;
+                margin-left: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 >Calibron 12</h1>
+            <h4>A very difficult puzzle invented in 1933 by Theodore Edison, son of inventor Thomas Edison.</h4>
+            <p>Put all the pieces in the large opening. Use mouse to drag and drop. Double click on pieces to rotate it 90 degree.</p>
+        </div>
+    <div id="container">
+        <div id="puzzle" ondragover="suction(event)" ondrop="drop(event)" >
+            56*56
+            <div id="placeHolder"></div>
+        </div>
+        <div id='pieces' ondragover="readyToWithDraw(event)" ondrop="withdraw(event)">
+        </div>
+
+        <button id="reset-btn" onclick="init()">Reset</button>
+        <button id="solve-btn" onclick="solvePuzzle()">Show Solution</button>
+    </div>
+    
+    <script>
+        var input = [["21*14","#f54242"], ["21*14","#f5aa42"], ["21*18","#f5f242"], 
+                     ["21*18","#78f542"], ["28*6","#22875b"],  ["28*7","#54d9e3"],
+                     ["28*14","#4b88c9"], ["32*11","#5248db"], ["32*10","#a074e3"], 
+                     ["14*4","#832ab0"],  ["17*14","#b33792"], ["10*7","#edc5ce"]];
+        pieces = {};
+        board = [];
+        selectedX = -1;
+        selectedY = -1;
+        draggedPiece = '#';
+        goodToDropPiece = '#';
+        toDropCoord = [-1,-1];
+        function init() {
+            var piecesContainer = document.getElementById("pieces");
+            var puzzle = document.getElementById("puzzle");
+            for (var placedPiece of document.querySelectorAll("#puzzle > div:not(#placeHolder)")) {
+                puzzle.removeChild(placedPiece);
+            }
+            piecesContainer.innerHTML = "";
+            for (var i in input) {
+                var piece = input[i];
+                var pieceEle = document.createElement("div");
+                var pieceId = String.fromCharCode('a'.charCodeAt(0) + parseInt(i));
+                var text = document.createTextNode(piece[0]);
+                pieceEle.appendChild(text);
+                pieceEle.style.backgroundColor = piece[1];
+                var dimen = piece[0].split("*");
+                
+                pieceEle.style.width = dimen[0] * 10 + "px";
+                pieceEle.style.height = dimen[1] * 10 + "px";
+                pieceEle.draggable = "true";
+                pieceEle.id = pieceId;
+                pieces[pieceId] = {};
+                pieces[pieceId]["width"] = parseInt(dimen[0]);
+                pieces[pieceId]["height"] = parseInt(dimen[1]);
+                pieces[pieceId]["placed"] = false;
+                
+                pieceEle.addEventListener("dblclick", rotate);
+                pieceEle.addEventListener("dragstart", onDragStart);
+                pieceEle.addEventListener("drag", pieceOnDrag)
+                piecesContainer.appendChild(pieceEle);
+            }
+            board = [];
+            for (var i = 0; i < 56; i++) {
+                var temp = new Array(56).fill('#');
+                board.push(temp);
+            }
+        }
+        init();
+        function pieceOnDrag(event) {
+            event.preventDefault();
+        }
+        function onDragStart(event) {
+            var container = document.getElementById("puzzle");
+            var containerBorderWidth = parseInt(getComputedStyle(container,null).getPropertyValue('border-width'));
+            var target = event.target;
+            if (!target.classList.contains("selected")) {
+                var selectedPieces = document.querySelectorAll("div.selected");
+                for (var piece of selectedPieces) {
+                    piece.classList.remove("selected");
+                }
+                target.classList.add("selected");
+            }
+            draggedPiece = target.id;
+            if (pieces[draggedPiece]["placed"]) {
+                selectedX = event.pageX - (container.offsetLeft + containerBorderWidth) - this.offsetLeft;
+                selectedY = event.pageY - (container.offsetTop + containerBorderWidth) - this.offsetTop;
+            } else {
+                selectedX = event.pageX - this.offsetLeft;
+                selectedY = event.pageY - this.offsetTop;
+            }
+        }
+        function getCorners() {
+            var corners = {"topLeft": [], "topRight": [],"botLeft": [], "botRight": []};
+            for (var i = 0; i < board.length; i++) {
+                for (var j = 0; j < board[0].length;j++) {
+                    if (board[i][j] == '#') {
+                        // top left
+                        if ((i - 1 < 0 || board[i-1][j] != '#') && (i+1 < board.length && board[i+1][j] == '#') && 
+                             (j - 1 < 0 || board[i][j-1] != '#') && (j+1 < board[0].length && board[i][j+1] == '#')) {
+                                 corners["topLeft"].push([i,j]);
+                        // top right
+                        } else if ((i - 1 < 0 || board[i-1][j] != '#') && (i+1 < board.length && board[i+1][j] == '#') && 
+                                   (j + 1 >= board[0].length || board[i][j+1] != '#') && (j-1 >= 0 && board[i][j-1] == '#')) {
+                                 corners["topRight"].push([i,j]);
+                        // bot left
+                        } else if ((i + 1 >= board.length || board[i+1][j] != '#') && (i-1 >= 0 && board[i-1][j] == '#') &&
+                                   (j-1 < 0 || board[i][j-1] != '#') && (j + 1 < board[0].length && board[i][j+1] == '#')) {
+                                 corners["botLeft"].push([i,j]);
+                        // bot right              
+                        } else if ((i + 1 >= board.length || board[i+1][j] != '#') && (i-1 >= 0 && board[i-1][j] == '#') && 
+                                   (j + 1 >= board[0].length || board[i][j+1] != '#') && (j-1 >= 0 && board[i][j-1] == '#')) {
+                                 corners["botRight"].push([i,j]);            
+                        }
+                    }
+                }
+            }
+            return corners
+        }
+        
+        const getTopLeftPosition = (cornerY, cornerX, h, w, i, borderWidth) => {
+                var calc = [[cornerY*10-borderWidth, cornerX*10-borderWidth], 
+                            [cornerY*10-borderWidth, (cornerX - w + 1) * 10-borderWidth], 
+                            [(cornerY - h + 1) * 10-borderWidth, cornerX * 10-borderWidth],
+                            [(cornerY - h + 1) * 10-borderWidth, (cornerX - w + 1) * 10-borderWidth]];
+                return calc[i];
+        }
+        const getTopLeftCoord = (cornerY, cornerX, h, w, i) => {
+            var calc = [[cornerY, cornerX], 
+                        [cornerY, cornerX - w + 1], 
+                        [cornerY - h + 1, cornerX],
+                        [cornerY - h + 1, cornerX - w + 1]];
+            return calc[i];
+        }
+
+        function suction(event) {
+            event.preventDefault();
+            var container = document.getElementById("puzzle");
+            var offset = container.getBoundingClientRect();
+            var borderWidth = parseInt(getComputedStyle(container,null).getPropertyValue('border-width'));
+            var mouseTop = event.pageY - offset.top - borderWidth;
+            var mouseLeft = event.pageX - offset.left - borderWidth;
+            var topLeft = [parseInt((mouseTop - selectedY)/10), parseInt((mouseLeft - selectedX)/10)];
+            
+            if (pieces[draggedPiece]["placed"]) {
+                fill('#', pieces[draggedPiece]["width"], pieces[draggedPiece]["height"], pieces[draggedPiece]["coord"])
+            }
+            var corners = getCorners();
+            var height = pieces[draggedPiece]["height"];
+            var width = pieces[draggedPiece]["width"];
+            // topLeft, topRight, botLeft, botRight
+            var recCorners = [topLeft, [topLeft[0], topLeft[1] + width - 1], [topLeft[0] + height - 1, topLeft[1]], [topLeft[0]+height-1, topLeft[1] + width - 1]];
+            var placeHolder = document.getElementById("placeHolder");
+            var borderWidth = 3;
+            var color = document.getElementById(draggedPiece).style.backgroundColor;
+            // 遍历每一个方块角
+            var foundAtLeastOneCornerToFit = false;
+            for (var i = 0; i < recCorners.length;i++) {
+                var recCorner = recCorners[i];
+                var boardCorners = corners[Object.keys(corners)[i]];
+                // 遍历对应board里的每个对应角（左上右上左下右下）
+                for (var boardCorner of boardCorners) {
+                    var coord = getTopLeftCoord(boardCorner[0], boardCorner[1], height, width, i);
+                    if (Math.pow(recCorner[0] - boardCorner[0], 2) + Math.pow(recCorner[1] - boardCorner[1], 2) <= 9 && canFill(width, height, coord) ) {
+                        var pos = getTopLeftPosition(boardCorner[0], boardCorner[1], height, width, i, borderWidth);
+                        placeHolder.style.top = pos[0];
+                        placeHolder.style.left = pos[1];
+                        placeHolder.style.height = height * 10;
+                        placeHolder.style.width = width * 10;
+                        placeHolder.style.border = borderWidth + "px solid " + color;
+                        foundAtLeastOneCornerToFit = true;
+                        goodToDropPiece = draggedPiece;
+                        toDropCoord = [...coord];
+                        break;
+                    }
+                }
+                if (foundAtLeastOneCornerToFit) break;
+            }
+            if (!foundAtLeastOneCornerToFit) {
+                placeHolder.style.top = 0;
+                placeHolder.style.left = 0;
+                placeHolder.style.height = 0;
+                placeHolder.style.width = 0;
+                placeHolder.style.borderWidth = 0;
+                goodToDropPiece = '#';
+                toDropCoord = [-1, -1];
+            } 
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            var puzzle = document.getElementById("puzzle");
+            
+            if (goodToDropPiece != '#' ) {
+                var pieceEle = document.getElementById(goodToDropPiece);
+                var piece = pieces[goodToDropPiece];
+                
+                pieceEle.style.position = "absolute";
+                pieceEle.style.top = toDropCoord[0] * 10;
+                pieceEle.style.left = toDropCoord[1] * 10;
+                pieceEle.classList.remove("selected");
+                
+                var width = pieces[goodToDropPiece]["width"];
+                var height = pieces[goodToDropPiece]["height"];
+                
+                if (piece["placed"]) {
+                    var prevCoord = piece["coord"];
+                    fill('#', width, height, prevCoord);
+                }
+
+                fill(goodToDropPiece, width, height, toDropCoord); 
+                piece["placed"] = true;
+                piece["coord"] = [...toDropCoord];          
+                puzzle.appendChild(pieceEle);
+
+                var placeHolder = document.getElementById("placeHolder");
+                placeHolder.style.borderWidth = 0;
+                placeHolder.style.width = 0;
+                placeHolder.style.height = 0;
+                placeHolder.style.top = 0;
+                placeHolder.style.left = 0;
+            }
+        }
+        function readyToWithDraw(event) {
+            event.preventDefault();
+        }
+        function withdraw(event) {
+            event.preventDefault();
+            var piecesEle = document.getElementById("pieces");
+            var pieceEle = document.getElementById(draggedPiece);
+            var piece = pieces[draggedPiece];
+            if (piece["placed"]) {
+                pieceEle.style.position = "static";
+                piecesEle.appendChild(pieceEle);
+                fill('#', piece["width"], piece["height"], piece["coord"]);
+                piece["placed"] = false;
+            }
+        }
+        function rotate(event) {
+            var target = event.target;
+            var id = target.id;
+            var piece = pieces[id];
+            var selectedPieces = document.querySelectorAll("#pieces > div.selected");
+            for (var selectedPiece of selectedPieces) {
+                selectedPiece.classList.remove("selected");
+            }
+
+            // if from rightside
+            target.classList.add("selected");
+            var canRotate = true;
+            if (piece["placed"]) {
+                fill('#', piece["width"], piece["height"], piece["coord"]);
+                if ( !fill(id, piece["height"], piece["width"], piece["coord"])) {
+                    canRotate = false;
+                }
+            } 
+            if (canRotate) {
+                var temp = target.style.width;
+                target.style.width = target.style.height;
+                target.style.height = temp;
+                temp = piece["width"];
+                piece["width"] = piece["height"];
+                piece["height"] = temp;
+            }
+        }
+        function getFirstPosition() {
+            for (var i = 0; i < board.length; i++) {
+                for (var j = 0;j < board[0].length;j++) {
+                    if(board[i][j] == '#') {
+                        return [i, j];
+                    }
+                }
+            }
+            return [-1,-1];
+        }
+        function fill(c, width, height, startPoint) {
+            if(c != "#") {
+                if (startPoint[0] + height > board.length || startPoint[1] + width > board[0].length) {
+                    return false;
+                }
+                for (var i = startPoint[0]; i < startPoint[0] + height; i++) {
+                    for (var j = startPoint[1]; j < startPoint[1] + width;j++) {
+                        if (board[i][j] !== '#') {
+                            return false;
+                        }
+                    }
+                }
+            }
+            for (var i = startPoint[0]; i < startPoint[0] + height; i++) {
+                for (var j = startPoint[1]; j < startPoint[1] + width;j++) {
+                    board[i][j] = c;
+                }
+            }
+            return true;
+        }
+        function canFill(width, height, startPoint) {
+            if (startPoint[0] + height > board.length || startPoint[1] + width > board[0].length) {
+                return false;
+            }
+            for (var i = startPoint[0]; i < startPoint[0] + height; i++) {
+                for (var j = startPoint[1]; j < startPoint[1] + width;j++) {
+                    if (board[i][j] !== '#') {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        function getTodoPieces() {
+            var res = [];
+            for (var key of Object.keys(pieces)) {
+                var curPiece = pieces[key];
+                if (curPiece["placed"] == false) {
+                    res.push(key);
+                }
+            }
+            return res;
+        }
+        function dfs() {
+            var puzzle = document.getElementById("puzzle");
+            var piecesEle = document.getElementById("pieces");
+            var startPoint = getFirstPosition();
+            var todoPieces = getTodoPieces();
+            //成功
+            if (startPoint[0] == -1 && startPoint[1] == -1 && todoPieces.length === 0) {
+                console.log("we did it");
+                return true;
+            }
+            
+            // 遍历还没有放进去的每一块
+            for (var key of todoPieces) {
+                var curPiece = pieces[key];
+                // 如果当前块当前角度能放进去
+
+                var pieceEle = document.getElementById(key);
+
+                if (fill(key, curPiece["width"], curPiece["height"], startPoint)) {
+                    pieces[key]["placed"] = true;
+                    pieces[key]["coord"] = [...startPoint];
+
+                    pieceEle.style.position = "absolute";
+                    pieceEle.style.top = startPoint[0] * 10;
+                    pieceEle.style.left = startPoint[1] * 10;
+                    pieceEle.classList.remove("selected");
+                    puzzle.appendChild(pieceEle)
+                    
+                    //如果返回true， 当前块放的是对的
+                    if (dfs()) {
+                        return true;
+                    }
+                    
+                    //否则把块拿出来，重置状态
+                    fill('#', curPiece["width"], curPiece["height"], startPoint);
+                    pieces[key]["placed"] = false;
+                    
+                    pieceEle.style.position = "static";
+                    piecesEle.appendChild(pieceEle);        
+                } 
+                //转90度再试试
+                var temp = pieces[key]["width"]
+                pieces[key]["width"] = pieces[key]["height"]
+                pieces[key]["height"] = temp;
+
+                var tem = pieceEle.style.width; 
+                pieceEle.style.width = pieceEle.style.height;
+                pieceEle.style.height = tem;
+
+                if (fill(key, curPiece["width"], curPiece["height"], startPoint)) {
+                    
+                    pieces[key]["placed"] = true;
+                    pieces[key]["coord"] = [...startPoint]
+
+                    pieceEle.style.position = "absolute";
+                    pieceEle.style.top = startPoint[0] * 10;
+                    pieceEle.style.left = startPoint[1] * 10;
+                    pieceEle.classList.remove("selected");
+                    puzzle.appendChild(pieceEle)
+
+                    // 如果返回true， 当前块放的是对的
+                    if (dfs()) {
+                        return true;
+                    }
+                
+                    //否则把块拿出来，重置状态
+                    fill('#', curPiece["width"], curPiece["height"], startPoint);
+                    pieces[key]["placed"] = false;
+                    
+                    pieceEle.style.position = "static";
+                    piecesEle.appendChild(pieceEle);
+                }     
+                //两个角度都放不进，或者放进去了但不是正确解, 再试下一块
+            }
+            // 每一块每个角度都放不进去
+            return false;
+        }
+        function solvePuzzle() {
+            document.getElementById("reset-btn").click();
+            dfs();
+            console.log(JSON.stringify(board));
+        }
+    </script>
+</body>
+</html>
