@@ -140,6 +140,7 @@
                 selectedX = event.pageX - this.offsetLeft;
                 selectedY = event.pageY - this.offsetTop;
             }
+            
         }
         function getCorners() {
             var corners = {"topLeft": [], "topRight": [],"botLeft": [], "botRight": []};
@@ -189,8 +190,11 @@
             var container = document.getElementById("puzzle");
             var offset = container.getBoundingClientRect();
             var borderWidth = parseInt(getComputedStyle(container,null).getPropertyValue('border-width'));
-            var mouseTop = event.pageY - offset.top - borderWidth;
-            var mouseLeft = event.pageX - offset.left - borderWidth;
+            console.log();
+            var mouseTop = event.pageY - offset.top - window.pageYOffset - borderWidth;
+            var mouseLeft = event.pageX - offset.left - window.pageXOffset - borderWidth;
+            // console.log(mouseTop, mouseLeft);
+            // console.log("")
             var topLeft = [parseInt((mouseTop - selectedY)/10), parseInt((mouseLeft - selectedX)/10)];
             
             if (pieces[draggedPiece]["placed"]) {
