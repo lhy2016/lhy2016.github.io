@@ -1,4 +1,4 @@
-var gameContent = {"ttt": loadTtt};
+var gameContent = {"ttt": loadTtt, "clbr12": loadCalibron,};
 $("#gameButton").click(function() {
     $(this).addClass("active");
     if ($("#game > #games").length == 0) {
@@ -7,6 +7,10 @@ $("#gameButton").click(function() {
             <div class='gameBrowse' id='ttt'>\
                 <div class='game-pic'></div>\
                 <div class='game-title'>tic tac toe</div>\
+            </div>\
+            <div class='gameBrowse' id='clbr12'>\
+                <div class='game-pic'></div>\
+                <div class='game-title'>Calibron 12</div>\
             </div>\
         </div>");
         $(".gameBrowse").click(function() {
@@ -30,6 +34,9 @@ $(document).click(function(event) {
       $('#games').hide();
     }        
 });
+function loadCalibron() {
+    window.location.href = "12piece.html";
+}
 function loadTtt() {
     var tttPlayerTurn = true;
     var playerChess = "X"

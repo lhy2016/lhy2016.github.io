@@ -225,6 +225,7 @@ div.logo > a {
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
+    margin: 0px 8px;
 }
 .gameBrowse .game-pic {
     width: 12em;
@@ -235,6 +236,11 @@ div.logo > a {
     background: url("../images/tictactoe.jpg");
     background-position: center center;
     background-size: cover;   
+}
+#clbr12 .game-pic {
+    background: url("../images/calibron_12_.jpg");
+    background-position: center center;
+    background-size: cover;
 }
 .game-panel {
     position: fixed;
