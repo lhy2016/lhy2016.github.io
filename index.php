@@ -186,59 +186,55 @@
         <div class="col-md-12">
 
           <div class="portfolio-list">
-
             <ul class="nav list-unstyled" id="portfolio-flters">
               <li class="filter filter-active" data-filter=".all">all</li>
-              <li class="filter" data-filter=".react">react.js</li>
+              <li class="filter" data-filter=".react">React</li>
               <li class="filter" data-filter=".php">PHP</li>
-              <li class="filter" data-filter=".jsp">JSP</li>
+              <li class="filter" data-filter=".python">Python</li>
               <li class="filter" data-filter=".java">Java</li>
+              <li class="filter" data-filter=".flask">Flask</li>
               <li class="filter" data-filter=".web">Website</li>
+              <li class="filter" data-filter=".mobile">Mobile</li>
             </ul>
-
           </div>
 
 
 
           <div class="portfolio-container">
 
-            <div class="col-lg-4 col-md-6 portfolio-thumbnail all react">
-              <a class="popup-img" href="images/comingSoon.jpg" target="_blank">
-                <img src="images/comingSoon.jpg" alt="img">
+            <div class="col-lg-4 col-md-6 portfolio-thumbnail all react flask python web">
+              <a class="popup-img" style="background-image: url('images/homefinder.jpeg');" href="https://homefinder.haoyangliu.com" target="_blank">
+                <div class="hoverText">Home Finder</div>
               </a>
             </div>
 
             <div class="col-lg-4 col-md-6 portfolio-thumbnail all php web">
-              <a class="popup-img" href="http://haoyangliu.com/stock/stock.php" target="_blank">
-                <div class="hoverText">Stock Search</div>
-                <img src="images/stock.jpg" alt="img">
+              <a class="popup-img" style="background-image: url('images/education.jpg');" href="http://otp.whv.mybluehost.me/" target="_blank">
+                <div class="hoverText">Learn Education</div>
               </a>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-thumbnail all jsp java web">
-              <a class="popup-img" href="http://haoyangliu.com:8080/Security" target="_blank">
-                <div class="hoverText">InfoSec Blog</div>
-                <img src="images/security.jpg" alt="img">
+            <div class="col-lg-4 col-md-6 portfolio-thumbnail all flask python web">
+              <a class="popup-img" style="background-image: url('images/stock.jpg');" href="https://invest.haoyangliu.com" target="_blank">
+                <div class="hoverText">Invest Assist</div>
               </a>
             </div>
 
             <div class="col-lg-4 col-md-6 portfolio-thumbnail all java">
-              <a class="popup-img" href="https://github.com/lhy2016/WhiteBoard" target="_blank">
+              <a class="popup-img" style="background-image: url('images/portfolio/4.jpg');" href="https://github.com/lhy2016/WhiteBoard" target="_blank">
                 <div class="hoverText">White Board</div>
-                <img src="images/portfolio/4.jpg" alt="img">
               </a>
             </div>
 
             <div class="col-lg-4 col-md-6 portfolio-thumbnail all java">
-              <a class="popup-img" href="https://github.com/lhy2016/Java-Basic" target="_blank">
+              <a class="popup-img" style="background-image: url('images/Java-logo.jpg');" href="https://github.com/lhy2016/Java-Basic" target="_blank">
                 <div class="hoverText">Java Basics</div>
-                <img src="images/Java-logo.jpg" alt="img">
               </a>
             </div>
 
-            <div class="col-lg-4 col-md-6 portfolio-thumbnail all ">
-              <a class="popup-img" href="images/portfolio/6.jpg">
-                <img src="images/portfolio/6.jpg" alt="img">
+            <div class="col-lg-4 col-md-6 portfolio-thumbnail all mobile">
+              <a class="popup-img" style="background-image: url('images/lock.jpg');" href="https://www.youtube.com/watch?v=H4pr_lUBNPo" target="_blank">
+                <div class="hoverText">Smart Lock</div>  
               </a>
             </div>
 

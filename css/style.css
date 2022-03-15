@@ -281,7 +281,7 @@ nav ul li a {
 #about {
   width: 100%;
   height: auto;
-  background: #dedede;
+  background: #f3f3f3;
   padding-top: 190px;
 }
 #about p {
@@ -389,7 +389,7 @@ nav ul li a {
 #portfolio {
   position: relative;
   padding-bottom: 50px;
-  background-color:#dedede;
+  background-color:#f3f3f3;
 }
 
 #portfolio .portfolio-list {
@@ -437,15 +437,18 @@ nav ul li a {
 .portfolio-thumbnail {
   margin-bottom: 30px;
   overflow: hidden;
-  position:relative;
+  aspect-ratio: 16 / 11;
 }
 .popup-img {
   color:transparent;
-  display:inline-block;
+  display: block;
+  height: 100%;
   padding:0px;
   position:relative;
+  background-position: center;
+  background-size: cover;
 }
-.popup-img:hover, .popup-img:focus, .popup-img:visited {
+.popup-img:hover,  .popup-img:visited {
    color:#f3f3f3;
 }
 .popup-img:after {
@@ -463,7 +466,7 @@ nav ul li a {
     opacity:1;
 }
 .portfolio-thumbnail img {
-  max-width: 100%;
+  height: 100%;
 }
 .hoverText {
   position:absolute;
