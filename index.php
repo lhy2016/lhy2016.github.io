@@ -1,5 +1,6 @@
 <?php 
   session_start(); 
+  require_once "googleDrive.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -151,22 +152,24 @@
         <h2>My Resume</h2>
       </div>
     </div>
-
+    <?php 
+      $resume_link = "https://docs.google.com/document/d/e/2PACX-1vTHGsVJccz3ZoK1m8yIPMHJxjbbr3A01RFfN-o7KFvQdH1aUtSdHohGshSlS-p8Iw-8LXDdv4Q_584R/pub?embedded=true"
+    ?>
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
             <div class="col-md-4">
-              <div class="button_cont" align="center"><a class="resButton" href="./file/Resume.pdf" target="_blank" rel="nofollow noopener">Open <i style="margin-left:3px" class="fas fa-external-link-alt"></i></a></div>
+              <div class="button_cont" align="center"><a class="resButton" href=<?php echo $resume_link ?> target="_blank" rel="nofollow noopener">Open <i style="margin-left:3px" class="fas fa-external-link-alt"></i></a></div>
             </div>
             <div class="col-md-4">
               <div class="button_cont" align="center"><a class="resButton" id="showResume">Expend<i style="margin-left:5px" class="fas fa-angle-double-down"></i></a></div>
             </div>
             <div class="col-md-4">
-              <div class="button_cont" align="center"><a class="resButton" href="./file/Resume.pdf" target="_blank" download="resume">Download <i class="fas fa-cloud-download-alt"></i></a></div>
+              <div class="button_cont" align="center"><a class="resButton" id="downloadResume">Download <i class="fas fa-cloud-download-alt"></i></a></div>
             </div>
           </div>
-          <iframe id="myResume" src="./file/Resume.pdf" height="0" width="100%" style="border-width: 0px"></iframe>
+          <iframe id="myResume" src=<?php echo $resume_link ?>></iframe>
         </div>
       </div>
     </div>

@@ -381,7 +381,13 @@ nav ul li a {
   display: none;
 }
 
-
+#myResume {
+  border-width: 0px;
+  height: 0px; 
+  width: 100%;
+  -webkit-box-shadow: inset 0px 0px 17px 0px rgba(0,0,0,0.58); 
+  box-shadow: inset 0px 0px 17px 0px rgba(0,0,0,0.58);
+}
 /*-----------------------------------------------------------------------------------*/
 /*  Portfolio
 /*-----------------------------------------------------------------------------------*/
