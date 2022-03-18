@@ -1,6 +1,17 @@
 <?php 
   session_start(); 
-  require_once "googleDrive.php";
+  $client = new Google\Client();
+  $client->setAuthConfig('credentials.json');
+  $client->addScope(Google\Service\Drive::DRIVE_READONLY);
+
+  if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
+    $client->setAccessToken($_SESSION['access_token']);
+    $drive = new Google\Service\Drive($client);
+    
+  } else {
+    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/googleDrive.php';
+    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
