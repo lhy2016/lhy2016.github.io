@@ -7,6 +7,7 @@
  $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/googleDrive.php';
  $client->setRedirectUri($redirect_uri);
  $auth_url = $client->createAuthUrl();
- header('Location' .  filter_var($auth_url, FILTER_SANITIZE_URL));
+ echo $auth_url;
+ header('Location: ' .  filter_var($auth_url, FILTER_SANITIZE_URL));
  
  ?>
