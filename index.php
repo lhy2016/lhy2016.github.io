@@ -1,18 +1,5 @@
 <?php 
-  require_once __DIR__ . '/vendor/autoload.php';
   session_start(); 
-  $client = new Google\Client();
-  $client->setAuthConfig('credentials.json');
-  $client->addScope(Google\Service\Drive::DRIVE_READONLY);
-
-  if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-    $client->setAccessToken($_SESSION['access_token']);
-    $drive = new Google\Service\Drive($client);
-    
-  } else {
-    $redirect_uri = 'http://' . $_SERVER['HTTP_HOST'] . '/googleDrive.php';
-    header('Location: ' . filter_var($redirect_uri, FILTER_SANITIZE_URL));
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -178,7 +165,7 @@
               <div class="button_cont" align="center"><a class="resButton" id="showResume">Expend<i style="margin-left:5px" class="fas fa-angle-double-down"></i></a></div>
             </div>
             <div class="col-md-4">
-              <div class="button_cont" align="center"><a class="resButton" id="downloadResume">Download <i class="fas fa-cloud-download-alt"></i></a></div>
+              <div class="button_cont" align="center"><a class="resButton" href="file/Resume.pdf" download>Download <i class="fas fa-cloud-download-alt"></i></a></div>
             </div>
           </div>
           <iframe id="myResume" src=<?php echo $resume_link ?>></iframe>

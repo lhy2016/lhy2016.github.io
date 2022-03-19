@@ -2,15 +2,6 @@
     "require": {
         "mailgun/mailgun-php": "^3.2",
         "kriswallsmith/buzz": "^1.2",
-        "nyholm/psr7": "^1.4",
-        "google/apiclient": "2.12.1"
-    },
-    "scripts": {
-        "pre-autoload-dump": "Google\\Task\\Composer::cleanup"
-    },
-    "extra": {
-        "google/apiclient-services": [
-            "Drive"
-        ]
+        "nyholm/psr7": "^1.4"
     }
 }

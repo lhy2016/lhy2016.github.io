@@ -62,18 +62,6 @@ $(document).ready(function() {
     }
   });
 
-  $("#downloadResume").click(function(event) {
-    event.preventDefault();
-    $.ajax("googleDrive.php", 
-      {
-        data: {
-          resume: "download",
-        },
-        success: function(data) {
-          console.log("success! data: " + data);
-        },
-      });
-  });
 
 
   // ========================================================================= //
