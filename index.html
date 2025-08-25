@@ -5,22 +5,15 @@
     <title>Haoyang Liu - Full Stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind.config.js"></script>
+    <link rel="stylesheet" href="css/nav-menu.css">
     <style>
 
-        /* #top {
-            .background-container {
-                background: url(wave.svg);
-                background-position-x: 0;
-                background-size: max(1000px, 100%) 100%;
-                background-repeat: repeat-x
-            }
-        } */
         .gradient-bg {
-            background: linear-gradient(0deg, #112031 0%, #2e5c91 50%, #c0d3e9 100%);
+            background: linear-gradient(0deg, #112031 0%, #2e5c91 50%, #cd8e77 100%);
         }
-        .glass-effect {
-            backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.95);
+        .glass-effect-nav {
+            backdrop-filter: blur(12px);
+            background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, rgba(255, 255, 255, 0.50) 100%);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
@@ -56,6 +49,7 @@
         }
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 64px; 
         }
 
         .hero-slide-up-text > * {
@@ -65,36 +59,42 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
     <!-- Navigation -->
-    <nav class="sticky top-0 left-0 right-0 z-50 glass-effect">
+    <nav class="sticky top-0 z-50 glass-effect-nav">
         <div class="max-w-7xl mx-auto px-4 tablet:px-6 desktop:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center min-h-16">
                 <div class="flex-shrink-0">
-                    <a href="#top" class="text-2xl font-bold text-gradient cursor-pointer">HY</a>
+                    <a href="#top" id="logo-link" class="text-2xl font-bold text-gradient cursor-pointer">
+                        <img src="img/logo.jpg" alt="logo" class="h-12" />
+                    </a>
                 </div>
-                <div class="hidden tablet:flex space-x-8">
-                    <a href="#about" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">About Me</a>
-                    <a href="#experience" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Work Experience</a>
+                <div class="hidden desktop-nav-links tablet:flex space-x-8">
+                    <a href="#about" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">About</a>
+                    <a href="#skills" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Skills</a>
+                    <a href="#experience" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Work</a>
                     <a href="#education" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Education</a>
-                    <a href="#projects" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Project Demo</a>
-                    <a href="#contact" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Contact Me</a>
+                    <a href="#projects" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Project</a>
+                    <a href="#contact" class="nav-link px-3 py-2 text-gray-700 hover:text-gray-900 transition-colors">Contact</a>
                 </div>
+                <!-- Mobile menu toggle button -->
                 <div class="tablet:hidden">
-                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900 h-6 w-6 relative collapsed">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="tablet:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 bg-white bg-opacity-95">
-                <a href="#about" class="block px-3 py-2 text-gray-700 hover:text-gray-900">About Me</a>
-                <a href="#experience" class="block px-3 py-2 text-gray-700 hover:text-gray-900">Work Experience</a>
-                <a href="#education" class="block px-3 py-2 text-gray-700 hover:text-gray-900">Education</a>
-                <a href="#projects" class="block px-3 py-2 text-gray-700 hover:text-gray-900">Project Demo</a>
-                <a href="#contact" class="block px-3 py-2 text-gray-700 hover:text-gray-900">Contact Me</a>
+        <div id="mobile-menu" class="tablet:hidden hidden collapsed">
+            <div class="px-2">
+                <a href="#about" class="block px-3 py-4 text-gray-700 hover:text-gray-900">About Me</a>
+
+                <a href="#experience" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Work Experience</a>
+                <a href="#education" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Education</a>
+                <a href="#projects" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Project Demo</a>
+                <a href="#contact" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Contact Me</a>
             </div>
         </div>
     </nav>
@@ -563,7 +563,6 @@
 
     <script src="js/mobileNavToggle.js"></script>
     <script src="js/projectFiltering.js"></script>
-    <script src="js/navLinksScrolling.js"></script>
     <script src="js/heroWave.js"></script>
     <script>
         // Intersection Observer for animations
