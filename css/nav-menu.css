@@ -97,6 +97,7 @@
     &.collapsed {
         height: 0;
     }
+    /* TODO: use JS to calculate and apply, no hardcoding */
     &:not(.collapsed) {
         height: 352px;
     }
