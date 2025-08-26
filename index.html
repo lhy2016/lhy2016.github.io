@@ -11,12 +11,7 @@
         .gradient-bg {
             background: linear-gradient(0deg, #112031 0%, #2e5c91 50%, #cd8e77 100%);
         }
-        .glass-effect-nav {
-            backdrop-filter: blur(12px);
-            background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, rgba(255, 255, 255, 0.50) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        }
+        
         .text-gradient {
             background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
             -webkit-background-clip: text;
@@ -30,23 +25,10 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .nav-link {
-            position: relative;
-            overflow: hidden;
-        }
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
-            transition: width 0.3s ease;
-        }
-        .nav-link:hover::before {
-            width: 100%;
-        }
+
+        
+
+        
         html {
             scroll-behavior: smooth;
             scroll-padding-top: 64px; 
@@ -55,11 +37,19 @@
         .hero-slide-up-text > * {
             animation-fill-mode: forwards !important;
         }
+
+        section:not(#top):not(.animate-slide-up) {
+            opacity: 0;
+        }
+        
+        section:not(#top).animate-slide-up {
+            animation-fill-mode: both !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 glass-effect-nav">
+    <nav class="fixed top-0 w-full z-50 glass-effect-nav">
         <div class="max-w-7xl mx-auto px-4 tablet:px-6 desktop:px-8">
             <div class="flex justify-between items-center min-h-16">
                 <div class="flex-shrink-0">
@@ -87,10 +77,10 @@
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="tablet:hidden hidden collapsed">
-            <div class="px-2">
+        <div id="mobile-menu" class="tablet:hidden collapsed">
+            <div class="px-2 py-2">
                 <a href="#about" class="block px-3 py-4 text-gray-700 hover:text-gray-900">About Me</a>
-
+                <a href="#skills" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Skills</a>
                 <a href="#experience" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Work Experience</a>
                 <a href="#education" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Education</a>
                 <a href="#projects" class="block px-3 py-4 text-gray-700 hover:text-gray-900">Project Demo</a>
@@ -100,7 +90,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="top" class="gradient-bg mobile:min-h-[600px] tablet:min-h-[calc(100vh_-_66px)] flex items-center justify-center relative overflow-hidden">
+    <section id="top" class="gradient-bg mobile:min-h-[600px] tablet:min-h-[calc(100vh_-_66px)] mt-[66px] flex items-center justify-center relative overflow-hidden">
         
         
         
@@ -564,27 +554,6 @@
     <script src="js/mobileNavToggle.js"></script>
     <script src="js/projectFiltering.js"></script>
     <script src="js/heroWave.js"></script>
-    <script>
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-slide-up');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section:not(#top)').forEach(section => {
-            observer.observe(section);
-        });
-
-        
-    </script>
+    <script src="js/intersectionObserver.js"></script>
 </body>
 </html>

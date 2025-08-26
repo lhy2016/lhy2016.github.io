@@ -1,3 +1,31 @@
+.glass-effect-nav {
+    backdrop-filter: blur(12px);
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 35%, rgba(255, 255, 255, 0.60) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.nav-link {
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #1e293b 0%, #475569 100%);
+        transition: width 0.3s ease;
+    }
+
+    &.active::before {
+        width: 100%;
+        transition-delay: 200ms;
+    }
+}
+
 #mobile-menu-btn {
 
     > span {
@@ -56,6 +84,17 @@
 
            
         }
+    }
+}
+
+#mobile-menu {
+    overflow: hidden;
+    transition: height 0.2s ease;
+    &.collapsed {
+        height: 0;
+    }
+    &:not(.collapsed) {
+        height: 296px;
     }
 }
 

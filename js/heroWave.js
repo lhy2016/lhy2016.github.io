@@ -1,6 +1,4 @@
-//region: wavy animation
-
-const wavelength = 2000;     // period = vw
+const wavelength = 2000; 
 const height = 800;
 
 const svg = document.getElementById("wave");

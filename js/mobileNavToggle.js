@@ -8,7 +8,6 @@
             mobileMenuBtn.addEventListener('click', () =>{
                 mobileMenuBtn.classList.toggle(collapsedClass);
                 mobileMenu.classList.toggle(collapsedClass);        
-                mobileMenu.classList.toggle('hidden');
             });
 
             document.querySelectorAll('#mobile-menu a, #logo-link').forEach(link => {
@@ -17,7 +16,6 @@
                     if (isMenuOpen) {
                         mobileMenuBtn.classList.add(collapsedClass);
                         mobileMenu.classList.add(collapsedClass);
-                        mobileMenu.classList.add('hidden');
                     } 
                 })    
             })
