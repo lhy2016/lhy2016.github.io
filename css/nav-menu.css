@@ -98,7 +98,7 @@
         height: 0;
     }
     &:not(.collapsed) {
-        height: 296px;
+        height: 352px;
     }
 }
 
