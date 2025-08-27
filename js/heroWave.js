@@ -8,7 +8,7 @@ const wavePath = document.getElementById("wave-path");
 
 const amplitude = 30;         
 const speed = 0.02;          
-const points = 200;           
+const points = 250;           
 let phase = 0;           
 
 let ripples = [];
@@ -16,38 +16,44 @@ let ripples = [];
 let lastMousePos = null;
 let lastTime = null;
 
+function convertToSvgX(clientX) {
+  const rect = wavePath.getBoundingClientRect();
+  return ((clientX - rect.left) / rect.width) * wavelength;
+}
+
+wavePath.addEventListener("mouseleave", () => {
+  lastMousePos = null; 
+});
+
 // mouse triggered ripple
 wavePath.addEventListener("mousemove", (e) => {
-
+  const svgX = convertToSvgX(e.clientX);
   if (!lastMousePos) {
-    lastMousePos = { x: e.clientX, y: e.clientY};
+    lastMousePos = { x: svgX, y: e.clientY };
     return;
   }
 
   const dy = e.clientY - lastMousePos.y;
-  const dx = e.clientX - lastMousePos.x;
-  let strength = Math.min(Math.max(dy, -9000), 9000);
+  const dx = svgX - lastMousePos.x;
+  
+  let strength = Math.min(Math.max(dy * 1.5 , -500), 500);
   let spread = 80;
-  //Math.min(Math.max(Math.abs(dx), 100), 200);
-  let drift = -9;
 
-  lastMousePos = { x: e.clientX, y: e.clientY};
+  lastMousePos = { x: svgX, y: e.clientY};
 
   if (lastTime === null) {
     
     ripples.push({
-      x: e.clientX,
+      x: svgX,
       strength: strength,
-      decay: 0.97,
+      decay: 0.98,
       spread: spread,
-      drift: drift,
+      drift: -8,
     })
     
-    
-
     lastTime = setTimeout(() => {
       lastTime = null;
-    }, 30);
+    }, 20);
   }
 });
 
@@ -75,7 +81,7 @@ function drawWave() {
   }
   // Close the path
   d += ` L ${wavelength} ${height} L 0 ${height} Z`;
-  document.getElementById("wave-path").setAttribute("d", d);
+  wavePath.setAttribute("d", d);
 }
 
 function animate() {
@@ -91,7 +97,7 @@ function animate() {
     .filter(r => Math.abs(r.strength) > 0.1);
 
   drawWave();
-  requestAnimationFrame(animate);
+  //requestAnimationFrame(animate);
 }
 
 animate();
