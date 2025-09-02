@@ -97,7 +97,7 @@ function animate() {
     .filter(r => Math.abs(r.strength) > 0.1);
 
   drawWave();
-  //requestAnimationFrame(animate);
+  requestAnimationFrame(animate);
 }
 
 animate();

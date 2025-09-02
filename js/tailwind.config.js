@@ -21,16 +21,11 @@ tailwind.config = {
                 }
             },
             animation: {
-                'float': 'float 3s ease-in-out infinite',
                 'slide-up': 'slideUp 0.6s ease-out',
+                'up-n-down': 'upAndDown 1s ease-in-out infinite',
                 'fade-in': 'fadeIn 0.8s ease-out',
-                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
-                float: {
-                    '0%, 100%': { transform: 'translateY(0px)' },
-                    '50%': { transform: 'translateY(-10px)' }
-                },
                 slideUp: {
                     '0%': { transform: 'translateY(30px)', opacity: '0' },
                     '100%': { transform: 'translateY(0)', opacity: '1' }
@@ -38,7 +33,14 @@ tailwind.config = {
                 fadeIn: {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' }
-                }
+                },
+                upAndDown: {
+                    '0%' : { top: '0'},
+                    '25%': { top: '-2px'},
+                    '50%': { top: '0'},
+                    '75%': { top: '2px'},
+                    '100%': { top: '0px'}
+                },
             }
         }
     }

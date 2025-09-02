@@ -1,0 +1,87 @@
+#top.gradient-bg {
+    background: linear-gradient(0deg, #112031 0%, #2e5c91 50%, #cd8e77 100%);
+}
+
+.hero-slide-up-text > * {
+    animation-fill-mode: forwards !important;
+}
+
+.chevrons-down-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 4px;
+    mask-image: url(../img/icons/chevrons-down.svg);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: 20px 20px;
+    position: relative;
+}
+
+@keyframes slideLeftIn {
+    0% {
+        left: 36px;
+        opacity: 0;
+        scale: 1.0
+    }
+
+    50% {
+        scale: 1.2;
+        background-color: var(--social-icon-color);
+        opacity: 1;
+    }
+
+    100% {
+        left: 0;
+        opacity: 1;
+        scale: 1.0;
+    }
+}
+
+.social-links {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 48px;
+    
+    .social-icon {
+
+        width: 28px;
+        height: 28px;
+        background-color: white;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        position: relative;
+        animation: slideLeftIn 0.8s ease-in-out;
+        animation-fill-mode: both;
+
+        &:hover {
+            background-color: var(--social-icon-color);
+        }
+
+        &.linkedin-icon {
+            mask-image: url(../img/icons/linkedin.svg);
+            --social-icon-color: #0A66C2;
+            animation-delay: 0.4s;
+        }
+
+        &.github-icon {
+            mask-image: url(../img/icons/github.svg);
+            --social-icon-color: #1f2328;
+            animation-delay: 0.7s;
+        }
+
+        &.resume-icon {
+            mask-image: url(../img/icons/file-cv.svg);
+            --social-icon-color: #23cf7f;
+            animation-delay: 1.0s;
+        }
+
+        &.email-icon {
+            mask-image: url(../img/icons/email.svg);
+            --social-icon-color: #EA4335;
+            animation-delay: 1.3s;
+        }
+    }
+}
