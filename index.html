@@ -7,6 +7,7 @@
     <script src="js/tailwind.config.js"></script>
     <link rel="stylesheet" href="css/nav-menu.css">
     <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/about.css">
     <style>
 
         .card-hover {
@@ -118,14 +119,37 @@
                 <div class="w-24 h-1 bg-slate-600 mx-auto rounded-full"></div>
             </div>
             <div class="grid tablet:grid-cols-2 gap-12 items-center">
+
+
+
+
+
+
+
                 <!-- Picture Card -->
-                <div class="business-card">
-                    <div class="card-inner">
-                        <div class="w-80 aspect-[0.68] bg-gray-200 mx-auto flex items-center justify-center text-gray-500 card-hover">
-                            <span class="text-center">Haoyang's personal picture here</span>
+                <div class="flipping-card-scene">
+                    <div class="card relative cursor-pointer w-80 aspect-[0.68]">
+                        <div class="card__inner w-full h-full">
+                            <div class="card__face card__face--front  mx-auto flex items-center justify-center text-gray-500 card-hover">
+                                <span class="text-center">Front</span>
+                            </div>
+                            <div class="card__face card__face--back">
+                                Back
+                            </div>
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+
+
+
+
+
                 <!-- Bio Introduction -->
                 <div class="space-y-6">
                     <p class="text-lg leading-relaxed">
@@ -502,5 +526,10 @@
     <script src="js/projectFiltering.js"></script>
     <script src="js/heroWave.js"></script>
     <script src="js/intersectionObserver.js"></script>
+    <script>
+  document.querySelector('.card').addEventListener('click', e => {
+    e.currentTarget.classList.toggle('is-flipped');
+  });
+</script>
 </body>
 </html>
